@@ -1,0 +1,51 @@
+﻿[
+  {
+    "username": "adidas",
+    "password": "adidas",
+    "displayname": "adidas",
+    "peer": "adidasItemCreate",
+    "chaincodeid": "fabcar",
+    "securecontext": "user_type1_0"
+  },
+  {
+    "username": "seller",
+    "password": "admin",
+    "displayname": "seller",
+    "peer": "vp0",
+    "chaincodeid": "fabcar",
+    "securecontext": "user_type1_0"
+  },
+  {
+    "username": "cart",
+    "password": "cart",
+    "displayname" : "Cart",
+    "peer": "adidasCart",
+    "chaincodeid": "fabcar",
+    "securecontext" : "user_type1_0"
+  },
+  {
+    "username": "package",
+    "password": "package",
+    "displayname" : "Meat Packaging Ltd",
+    "peer": "vp2",
+    "chaincodeid": "fabcar",
+    "securecontext" : "user_type1_0"
+  },
+  {
+    "username": "retailer",
+    "password": "retailer",
+    "displayname" : "Retailer",
+    "peer": "vp3",
+    "chaincodeid": "fabcar",
+    "securecontext" : "user_type1_0"
+  },
+  {
+    "username": "admin",
+    "password": "admin",
+    "displayname" : "Blockchain Admin",
+    "peer": "admin",
+    "chaincodeid": "fabcar",
+    "securecontext" : "user_type1_0"
+  }
+
+]

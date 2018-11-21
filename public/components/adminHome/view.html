@@ -1,0 +1,126 @@
+<div data-role="view" data-title="Admin"  data-layout="main-nonav" data-model="app.admin" data-show="app.admin.onShow" data-after-show="app.admin.afterShow" id="adminScreen" class="screen">
+    <header class="header">
+        <span class="header-logo">Food Safety - Blockchain Admin</span>
+    </header>
+    <div class="content">
+        <div class="content-heading">
+        
+        </div>
+        <div class="content-inner">
+            <div class="container">
+                <div class="row">
+                <br/><br/>
+                <h2 class="heading">Admin Console</h2>
+                 <div id="window">
+                	<div id="channelHeader"></div>
+                	<div id="payload"></div>
+                </div>
+                <div class="col-sm-4">
+	                <div class="demo-section k-content">
+				        <div class="loading">
+				            <div id="totalProgressBar"></div>
+				            <div id="loadingProgressBar"></div>
+				        </div>
+				        <div class="loadingInfo">
+				            <h4>Current Blocks</h4>
+				            <div class="statusContainer">
+				                <p>
+				                Loaded: <span class="loadingStatus">0%</span> <br />
+				                Block(s) <span class="chunkStatus" data-bind="text : adminModel.blockloaded">0</span> of <span data-bind="text : adminModel.blockheight"></span>
+				                </p>
+				            </div>
+				            <a data-role="button" class="reloadButton" data-icon="refresh" data-animated="true" class="km-primary" data-bind="events: {click : adminModel.refresh}"></a>
+				        </div>
+				    </div>
+                </div>
+                </div>
+                <hr/>
+                <div class="row">
+	                <div class="col-sm-12">
+	                	<ul id="listview" class="admin"></ul>
+	                	
+	                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/x-kendo-template" id="blocktemplate">
+    <a data-role="button" class="km-primary km-button-right km-icon-button"><span class="km-icon km-edit"></span></a>
+    <div class="counter" style="width:3em;height:3em;background:${color};-mox-border-radius:50px;-webkit-border-radius:50px;text-align:center;float:left;margin-right:15px;" ><span class="count1">${json.header.number.low}</div></div>
+    <h4 class="km-bold"><strong>Transaction ID:</strong> ${json.data.data[0].payload.header.channel_header.tx_id}</h4>
+    <p class="job-title">
+	<table class="table center">
+		<tr><th>Channel</th><th>Timestamp</th><th>Payload</th></tr>
+		<tr><td>mychannel</td><td>${json.data.data[0].payload.header.channel_header.timestamp}</td><td><a data-role="button" class="btn viewpayload" id="${json.data.data[0].payload.header.channel_header.tx_id}" ><span class="icon icon-open-in-new"></span>View</a></td></tr>
+	</table>
+	
+</p>
+</script>
+<script type="text/x-kendo-template" id="channelHeaderTemplate">
+    	<table id="grid">
+                <colgroup>
+                    <col style="width:180px" />
+					<col style="width:400px" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th data-field="channel">Channel Header</th>
+						<th data-field="value"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Version</td>
+                        <td>${data.version}</td>
+                    </tr>
+                    <tr>
+                        <td>Type</td>
+                        <td>${data.type}</td>
+                    </tr>
+                    <tr>
+                        <td>Timestamp</td>
+                        <td>${data.timestamp}</td>
+                    </tr>
+                    <tr>
+                        <td>Channel</td>
+                        <td>${data.channel_id}</td>
+                    </tr>
+					<tr>
+                        <td>Transaction ID</td>
+                        <td>${data.tx_id}</td>
+                    </tr>
+				</tbody>
+	<table>
+</script>
+<script type="text/x-kendo-template" id="payloadTemplate">
+
+
+		<hr/>
+    	<table id="grid1">
+                <colgroup>
+                    <col style="width:180px" />
+					<col style="width:400px" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th data-field="channel">Payload</th>
+						<th data-field="value"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Key</td>
+                        <td>Value</td>
+                    </tr>
+					# for (var i=0 ; i < data.rwset.writes.length; i++){ var data1 = data.rwset.writes[i]; #
+# console.log(data1); #
+					 <tr>
+                        <td>${data1.key}</td>
+                        <td>${data1.value}</td>
+                    </tr>
+					#}#
+
+				</tbody>
+		<table>
+</script>
