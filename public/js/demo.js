@@ -904,6 +904,69 @@ demo = {
                     })
                 }).catch(swal.noop)
             }
+            else if(type == 'checkout'){
+                var html = '';
+                var json =[ { item :"item 1"},{ item :"item 2"}];
+                $.each(json,function(k,v){
+                   html += '<div class="form-group">' +
+                                    '<input id="input-field" type="text" class="form-control" />' +
+                                '</div>'+
+                                '<div class="row">'+
+                        '<div class="col-xs-2"><img class="img-responsive" src="img/cart/shoes1.jpg">'+
+                        '</div>'+
+                        '<div class="col-xs-4">'+
+                            '<h4 class="product-name"><strong>'+v.item+'</strong></h4><h4><small>Product description</small></h4>'+
+                        '</div>'+
+                        '<div class="col-xs-6">'+
+                            '<div class="col-xs-6 text-right">'+
+                                '<h6><strong>25.00 <span class="text-muted">x</span></strong></h6>'+
+                            '</div>'+
+                            '<div class="col-xs-4">'+
+                                '<input type="text" class="form-control input-sm" value="1">'+
+                            '</div>'+
+                            '<div class="col-xs-2">'+
+                                '<button type="button" class="btn btn-link btn-xs">'+
+                                    '<i class="fa fa-trash-o" aria-hidden="true"></i>'+
+                                '</button>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>';
+
+                });
+
+                
+
+
+                swal({
+                        title: 'Checkout',
+                        html: html,
+                        
+                        confirmButtonClass: 'btn btn-success',
+                        
+                        confirmButtonText: 'Checkout',
+                        
+                        buttonsStyling: false
+                    }).then(function(result) {
+                        swal({
+                            type: 'success',
+                            html: 'You entered: <strong>' +
+                                    $('#input-field').val() +
+                                  '</strong>',
+                            confirmButtonClass: 'btn btn-success',
+                            buttonsStyling: false
+    
+                        })
+                    }).catch(swal.noop)
+                }
+                else if(type == 'trace'){
+                    swal({
+                        title: "BlockChain Tracing",
+                        html: 'Please wait connecting ....' ,
+                                   
+                        buttonsStyling: false,
+                        confirmButtonClass: "btn btn-success"
+                    }).catch(swal.noop)
+                    }
         },
 
     initVectorMap: function(){
