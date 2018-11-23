@@ -7,7 +7,6 @@
         networkId:"0.0.0.0:3000/api/fabric/1_0",
         channelname:"mychannel",
         chaincodeId:"fabcar",
-	data:"data",
         localization: {
             defaultCulture: 'en',
             cultures: [{
