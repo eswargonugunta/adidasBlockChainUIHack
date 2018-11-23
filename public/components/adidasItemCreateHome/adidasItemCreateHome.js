@@ -102,6 +102,12 @@ app.localization.registerView('adidasItemCreateHome');
                     app.showNotification("Sneaker created successfully");
 
                     $("#finish").hide();
+
+                    $('#qrcode').show();
+
+                    $('#qrcode').qrcode({
+                        text	: result.responseText
+                    });
                 }
                 
                 
@@ -125,6 +131,28 @@ app.localization.registerView('adidasItemCreateHome');
 
                     spendModel.set("inventory",inventory);
                 }
+                
+            },
+            showInventory: function(){
+                var message = spendModel.sneakerList;
+
+                var inventory = 0;
+                var html = '<table class="table"><thead class="text-primary"><th>Sneakers</th></thead><tbody>';
+                if (message != "null" && message != null) {
+                    $.each(message.sneaker, function (k, v) {
+                        inventory++;
+                        html += '<tr><td>'+v+'</td></tr>';
+                    });
+                }
+
+                html += "</tbody></table>"
+
+                swal({
+                    title: 'Inventory List',
+                    buttonsStyling: false,
+                    confirmButtonClass: "btn btn-success",
+                    html:html
+                    }).catch(swal.noop)
 
             },
             showTransaction: function () {
@@ -173,6 +201,8 @@ app.localization.registerView('adidasItemCreateHome');
 
                     for (var i = len-1 ; i >= 0 ; i--) {
                         var hdrinfo = JSON.parse(message1.blockheader[i]);
+
+                        console.log(hdrinfo);
 
                         if (hdrinfo.type == "PKGTRANSFER") {
                             foodpkgtransferdata = {};
@@ -281,15 +311,7 @@ app.localization.registerView('adidasItemCreateHome');
                             transferdata["value"] = hdrinfo.value;
                             transferdata["prevHash"] = hdrinfo.prevHash;
                             transferdata["items"] = rmcreationarr;
-                        } else if (hdrinfo.type == "BATCH") {
-                            items = [];
-                            batchdata["block"] = hdrinfo.block;
-                            batchdata["type"] = hdrinfo.type;
-                            batchdata["value"] = hdrinfo.value;
-                            batchdata["prevHash"] = hdrinfo.prevHash;
-                            items.push(transferdata);
-                            batchdata["items"] = items;
-                        } else if (hdrinfo.type == "CREATE") {
+                        }  else if (hdrinfo.type == "CREATE") {
                             items = [];
                             createdata["sneakermodel"] = cattleinfo[0].sneakermodel;
                             createdata["sneakertype"] = cattleinfo[0].sneakertype;
@@ -305,7 +327,7 @@ app.localization.registerView('adidasItemCreateHome');
                             createdata["type"] = hdrinfo.type;
                             createdata["value"] = hdrinfo.value;
                             createdata["prevHash"] = hdrinfo.prevHash;
-                            items.push(batchdata);
+                            items.push(transferdata);
                             createdata["items"] = items;
                         }
                     }
@@ -758,7 +780,7 @@ app.localization.registerView('adidasItemCreateHome');
                 var nsWrites = data.transactionEnvelope.payload.data.actions[0].payload.action.proposal_response_payload.extension.results.ns_rwset;
                 var payloadTemplate = kendo.template($("#payloadTemplate").html());
                 var payloadHtml = payloadTemplate({data: nsWrites[0]});
-                html += "<tr><td><strong>Payload : </strong>" + payloadHtml + "</td></tr>";
+                html += "<tr><td><strong>Payload </strong>" + payloadHtml + "</td></tr>";
             }
 
             html += "</table>";

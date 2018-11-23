@@ -24,12 +24,12 @@
                                                 <div class="col-md-6">
                                                     <label class="floating-label" for="sender">Select Receiver</label>
                                                     <select id="sender" class="form-control"  style="width: 100%;">
-                                                        <option>E-Commerce</option>
-                                                        <option>Wholesale</option>
+                                                        <option value="E-Commerce">E-Commerce</option>
+                                                        <option value="Wholesale">Wholesale</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-6 pull-right">
-                                                        <button class="btn btn-success btn-round pull-right"  style="margin-top: 15px">
+                                                        <button class="btn btn-success btn-round pull-right" data-bind="click: transferModel.createTransfers" type="button" style="margin-top: 15px">
                                                                 <i class="material-icons">local_shipping</i>
                                                                 TRANSFER TO VENDOR
                                                             </button>
@@ -53,11 +53,13 @@
 
     #for(var i=0;i <data.length;i++){#
         <div class="col-xs-4 col-sm-3 col-md-3 nopad text-center">
-                <label class="image-checkbox">
-                  <img class="img-responsive" src="${data[i].img}" />
-                  <input type="checkbox" name="image[]" value="" />
-                  <i class="fa fa-check hidden" style="font-size:32px"></i>
-                </label>
-    </div>
+            <label class="image-checkbox">
+                <img class="img-responsive" src="${data[i].img}" />
+                <input type="checkbox" name="image[]" value="${data[i].barcode}" />
+                <i class="fa fa-check hidden" style="font-size:32px"></i>
+            </label>
+            <p>${data[i].cartItem} </br>
+            <strong>${data[i].price}</strong></p>
+        </div>
   #}#
   </script>

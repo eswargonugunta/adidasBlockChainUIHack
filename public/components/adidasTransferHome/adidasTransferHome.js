@@ -9,7 +9,176 @@ app.localization.registerView('adidasTransferHome');
 (function (parent) {
     var
         transferModel = kendo.observable({
+            sneakerList:[],
+            data : [
+                {
+                    "cartItem": "MEN'S ADIDAS RUNNING PUREBOOST RBL SHOES",
+                    "barcode":"884895094173",
+                    "img": "img/cart/shoes1.jpg",
+                    "model":"sport",
+                    "color":"Orange",
+                    "price":"$100"
+                },
+                {
+                    "cartItem": "ADIDAS GOLETTO VI FG FOOTBALL SHOES FOR MEN",
+                    "barcode":"884895094137",
+                    "img": "img/cart/shoes2.jpg",
+                    "model":"sport", 
+                    "color":"black",
+                    "price":"$120"
+                },
+                {
+                    "cartItem": "ADIDAS NEMEZIZ MESSI 18.4 FXG FOOTBALL SHOES FOR MEN",
+                    "barcode":"98090839624",
+                    "img": "img/cart/shoes3.jpg",
+                    "model":"sport", 
+                    "color":"green",
+                    "price":"$200"
+                },
+                {
+                    "cartItem": "ADIDAS ACE 16.4 FXG J SOCCER FOR MEN",
+                    "barcode":"884895093787",
+                    "img": "img/cart/shoes4.jpg",
+                    "model":"sport", 
+                    "color":"DarkGreen",
+                    "price":"$150"
+                },
+                {
+                    "cartItem": "ADIDAS X 16.1 FG FOOTBALL SHOES FOR MEN",
+                    "barcode":"883947822023",
+                    "img": "img/cart/shoes5.jpg",
+                    "model":"sport", 
+                    "color":"While",
+                    "price":"$50"
+                },
+                {
+                    "cartItem": "ADIDAS X TANGO 18.3 TF FOOTBALL SHOES FOR MEN",
+                    "barcode":"884417886477",
+                    "img": "img/cart/shoes6.jpg",
+                    "model":"sport", 
+                    "color":"Yellow",
+                    "price":"$130"
+                }
+            ],
+            getAllSneaker: function (e) {
+                var result = app.queryApi("getSneaker", ["sneakerids"]);
+                if (result.status == 200) {
+                    transferModel.sneakerList = JSON.parse(result.responseText);
+                }
+
+                if(transferModel.sneakerList){
+
+                    var message = transferModel.sneakerList;
+
+                    var inventory = 0;
+                    var inventoryData =[];
+                    if (message != "null" && message != null) {
+                        $.each(message.sneaker, function (k, v) {
+                            inventory++;
+                            for(var i =0;i< transferModel.data.length;i++){
+                                if(v == transferModel.data[i].barcode){
+                                    inventoryData.push(transferModel.data[i]);
+                                }
+                            }
+                        });
+                    }
+
+                    transferModel.set("inventory",inventory);
+
+                    var template = kendo.template($("#cartlistTemplate").html());
+
+
+                    var tempData = {
+                        data: inventoryData
+                    }
+                    var result = template(tempData);
+                    $("#cartlist").html(result);
             
+                    $(".image-checkbox").each(function () {
+                        if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
+                          $(this).addClass('image-checkbox-checked');
+                        }
+                        else {
+                          $(this).removeClass('image-checkbox-checked');
+                        }
+                      });
+                      
+                      // sync the state to the input
+                      $(".image-checkbox").on("click", function (e) {
+                        $(this).toggleClass('image-checkbox-checked');
+                        var $checkbox = $(this).find('input[type="checkbox"]');
+                        $checkbox.prop("checked",!$checkbox.prop("checked"));
+
+                        e.preventDefault();
+                      });
+
+                }
+                
+            },
+            createTransfers: function () {
+
+                var barcode = $("input[type='checkbox']:checked").val();
+
+                if (barcode) {
+                    var block = app.getChain();
+                    transferModel.createTransfer(block, barcode, $("#sender").val());
+                } else {
+                    app.showNotification("Please Pick one Sneaker  to transfer");
+                }
+            },
+            createTransfer: function (prevBlock, barcode, sender) {
+                var height = prevBlock.height;
+                var args = [];
+
+                var sneakerList = [];
+
+                var result1 = app.queryApi("getSneaker", [barcode]);
+                if (result1.status == 200) {
+                    var data1 = JSON.parse(result1.responseText);
+                    var message1 = data1;
+                    sneakerList.push(message1);
+                }
+
+                // args[0]
+                var zeroarg = {
+                    id: barcode,
+                    value: JSON.stringify(sneakerList),
+                    header: "Transfered to "+sender,
+                    from: "adidas",
+                    to: sender,
+                    date: new Date().toLocaleDateString()
+                }
+
+                args.push(JSON.stringify(zeroarg));
+               
+                // args[1]
+                args.push("adidas");
+                // args[2]
+                args.push(sender);
+                console.log(sneakerList);
+
+                var result = app.invokeApi("createSneakerTransfer", args);
+                if (result.status == 202) {
+                    var data = JSON.parse(result.responseText);
+                    app.showNotification("Sneaker Transfered successfully");
+                }
+
+                for (var i = 0; i < sneakerList.length ; i++) {
+                    var adidasid = sneakerList[i].adidasid;
+                    args = []
+                    args[0] = "";
+                    args[1] = "sneakerhdr-" + adidasid;
+                    var headerjson = {
+                        block: height + "",
+                        type: "TRANSFER",
+                        value: sender,
+                        prevHash: prevBlock.currentBlockHash
+                    };
+
+                    args.push(JSON.stringify(headerjson));
+                    result = app.invokeApi("updateHdr", args);
+                }
+            }
 
         });
 
@@ -28,62 +197,9 @@ app.localization.registerView('adidasTransferHome');
             $full_page.fadeIn('fast');
         });
 
-        var template = kendo.template($("#cartlistTemplate").html());
+        transferModel.getAllSneaker();
 
-        var data = [
-            {
-                "cartItem": "MEN'S ADIDAS RUNNING PUREBOOST RBL SHOES",
-                "cartId":1,
-                "img": "img/cart/shoes1.jpg",
-                "saleType":1, "itemVerified":1,
-                "price":"$100"
-            },
-            {
-                "cartItem": "ADIDAS GOLETTO VI FG FOOTBALL SHOES FOR MEN",
-                "cartId":2,
-                "img": "img/cart/shoes2.jpg",
-                "saleType":1, "itemVerified":1,
-                "price":"$120"
-            },
-            {
-                "cartItem": "ADIDAS NEMEZIZ MESSI 18.4 FXG FOOTBALL SHOES FOR MEN",
-                "cartId":3,
-                "img": "img/cart/shoes3.jpg",
-                "saleType":2, "itemVerified":2,
-                "price":"$200"
-            },
-            {
-                "cartItem": "ADIDAS ACE 16.4 FXG J SOCCER FOR MEN",
-                "cartId":1,
-                "img": "img/cart/shoes4.jpg",
-                "saleType":1, "itemVerified":1,
-                "price":"$150"
-            }
-        ];
-
-        var tempData = {
-            data: data
-        }
-        var result = template(tempData);
-        $("#cartlist").html(result);
-
-        $(".image-checkbox").each(function () {
-            if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
-              $(this).addClass('image-checkbox-checked');
-            }
-            else {
-              $(this).removeClass('image-checkbox-checked');
-            }
-          });
-          
-          // sync the state to the input
-          $(".image-checkbox").on("click", function (e) {
-            $(this).toggleClass('image-checkbox-checked');
-            var $checkbox = $(this).find('input[type="checkbox"]');
-            $checkbox.prop("checked",!$checkbox.prop("checked"))
-          
-            e.preventDefault();
-          });
+        
         
     });
 
