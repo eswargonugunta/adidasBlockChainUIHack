@@ -949,8 +949,8 @@ demo = {
                     }).then(function(result) {
                         swal({
                             type: 'success',
-                            html: 'You entered: <strong>' +
-                                    $('#input-field').val() +
+                            html: 'Your Order is placed and Your tracking ID : <strong>' +
+                                    123456789 +
                                   '</strong>',
                             confirmButtonClass: 'btn btn-success',
                             buttonsStyling: false

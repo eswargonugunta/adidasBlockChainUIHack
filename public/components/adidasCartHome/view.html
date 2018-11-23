@@ -30,10 +30,19 @@
   #for(var i=0;i <data.length;i++){#
   <div class="col-md-3">
     
-    <div class="card align-items-center">
+    <div class="card align-items-center" >
       
-      <div class="view overlay zoom">
+      <div class="view overlay zoom" style="position:relative;">
             <img src="${data[i].img}" class="card-img-top" alt="">
+            
+            <span class="saleBadge">
+              #if(data[i].itemVerified == 1){#
+                <img src="img/adidasVerify.png">
+              #} else if(data[i].itemVerified == 2){#
+                <img src="img/adidasNotVerfied.jpg">
+              #}#
+            </span>
+            
         <a>
           <div class="mask rgba-white-slight"></div>
         </a>
@@ -43,11 +52,7 @@
         <h5>
           <strong>
             <a href="" class="dark-grey-text">${data[i].cartItem} </a>
-            #if(data[i].saleType == 1){#
-            <span class="badge badge-pill info-color">DESIGNER</span>
-            #} else if(data[i].saleType == 2){#
-              <span class="badge badge-pill danger-color">NEW</span>
-              #}#
+            
             
             
           </strong>

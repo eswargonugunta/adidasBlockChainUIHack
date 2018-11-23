@@ -262,26 +262,6 @@ app.localization.registerView('adidasItemCreateHome');
             {
                 "category": "Groceries",
                 "img": "img/category/groceries.png"
-            },
-            {
-                "category": "Health",
-                "img": "img/category/health.png"
-            },
-            {
-                "category": "Milk",
-                "img": "img/category/milk.png"
-            },
-            {
-                "category": "Movies",
-                "img": "img/category/movies.png"
-            },
-            {
-                "category": "Snacks",
-                "img": "img/category/snacks.png"
-            },
-            {
-                "category": "Tickets",
-                "img": "img/category/tickets.png"
             }
         ];
 

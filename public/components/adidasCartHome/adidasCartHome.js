@@ -25,42 +25,42 @@ app.localization.registerView('adidasCartHome');
                 "cartItem": "MEN'S ADIDAS RUNNING PUREBOOST RBL SHOES",
                 "cartId":1,
                 "img": "img/cart/shoes1.jpg",
-                "saleType":1,
+                "saleType":1, "itemVerified":1,
                 "price":"$100"
             },
             {
                 "cartItem": "ADIDAS GOLETTO VI FG FOOTBALL SHOES FOR MEN",
                 "cartId":2,
                 "img": "img/cart/shoes2.jpg",
-                "saleType":1,
+                "saleType":1, "itemVerified":1,
                 "price":"$120"
             },
             {
                 "cartItem": "ADIDAS NEMEZIZ MESSI 18.4 FXG FOOTBALL SHOES FOR MEN",
                 "cartId":3,
                 "img": "img/cart/shoes3.jpg",
-                "saleType":2,
+                "saleType":2, "itemVerified":2,
                 "price":"$200"
             },
             {
                 "cartItem": "ADIDAS ACE 16.4 FXG J SOCCER FOR MEN",
                 "cartId":1,
                 "img": "img/cart/shoes4.jpg",
-                "saleType":1,
+                "saleType":1, "itemVerified":1,
                 "price":"$150"
             },
             {
                 "cartItem": "ADIDAS X 16.1 FG FOOTBALL SHOES FOR MEN",
                 "cartId":1,
                 "img": "img/cart/shoes5.jpg",
-                "saleType":2,
+                "saleType":2, "itemVerified":2,
                 "price":"$50"
             },
             {
                 "cartItem": "ADIDAS X TANGO 18.3 TF FOOTBALL SHOES FOR MEN",
                 "cartId":1,
                 "img": "img/cart/shoes6.jpg",
-                "saleType":1,
+                "saleType":1, "itemVerified":1,
                 "price":"$130"
             }
         ];

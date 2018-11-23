@@ -59,7 +59,22 @@ app.localization.registerView('home');
 
     parent.set('homeModel', homeModel);
 
+    function enterToLogin(){
+        var input = document.getElementById("login-password");
+        input.addEventListener("keyup", function(event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                homeModel.signin();
+            }
+        });
+
+        
+    }
+
     parent.set('onShow', function (e) {
+
+        enterToLogin();
+
         localStorage.clear();
         var $full_page = $('.full-page');
 

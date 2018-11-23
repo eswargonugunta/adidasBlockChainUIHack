@@ -1,0 +1,9 @@
+.saleBadge{
+    height: 65px;
+    position: absolute;
+    top: 0;
+    right: 7px;
+    border-radius: 0;
+    width: 65px;
+    padding: 7px 7px;
+}
