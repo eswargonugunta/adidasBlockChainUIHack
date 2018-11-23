@@ -71,7 +71,7 @@ app.localization.registerView('adidasDesignerHome');
         }
         var result = template(tempData);
         $("#cartlist").html(result);
-
+        
         /* // Step show event
         $("#smartwizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection, stepPosition) {
             if(stepPosition === 'first'){

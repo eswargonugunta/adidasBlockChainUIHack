@@ -788,7 +788,31 @@ demo = {
             md.startAnimationForBarChart(websiteViewsChart);
         }
     },
-
+    checkme: function(e){
+        var list = document.getElementsByName('optionsCheckboxes')
+        var sum=0;
+        
+        for(var i=0;i < list.length;i++){
+            if(list[i].checked){
+                sum += eval(list[i].value);
+            }
+        }
+        var rand = Math.round(sum);
+        var x = document.querySelector('.progress-circle-prog');
+      x.style.strokeDasharray = (rand * 4.65) + ' 999';
+        var el = document.querySelector('.progress-text'); 
+        var from = $('.progress-text').data('progress');
+        $('.progress-text').data('progress', rand);
+        var start = new Date().getTime();
+      
+        setTimeout(function() {
+            var now = (new Date().getTime()) - start;
+            var progress = now / 700;
+              result = rand > from ? Math.floor((rand - from) * progress + from) : Math.floor(from - (from - rand) * progress);
+            el.innerHTML = progress < 1 ? result+'%' : rand+'%';
+            if (progress < 1) setTimeout(arguments.callee, 10);
+        }, 10);
+    },
     showSwal: function(type,data){
         if(type == 'basic'){
         	swal({
@@ -988,6 +1012,56 @@ demo = {
                         buttonsStyling: false,
                         confirmButtonClass: "btn btn-success"
                     }).catch(swal.noop)
+                    }else if(type == 'designer'){
+                        var html = '';
+                    var json =[ { shoePart :"Rubber Outsole" ,shoeValue:"20"},{ shoePart :"Midsole",shoeValue:"20"},{ shoePart :"Heel Counter",shoeValue:"15"},{ shoePart :"Tonuge Logo",shoeValue:"10"},{ shoePart :"Toe Tip",shoeValue:"15"},{shoePart:"Shoe Lace",shoeValue:"20"}];
+                    
+                    var value = 100/json.length;
+                    html += '<div class="row">'+
+                    '<div class="col-md-6">' ;
+                       
+                    $.each(json,function(k,v){
+                        html += '<div class = "row">' +
+                           '<div class="col-md-4" style="text-align:left">' +
+                               '<div class="checkbox form-horizontal-checkbox">' +
+                                   '<label>' +
+                                   '<input type="checkbox" onclick="demo.checkme(this);" value= "'+v.shoeValue+'" name="optionsCheckboxes">'+ v.shoePart + ' </label>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>' ;
+    
+                    });
+    
+                    html += '<div class="col-md-6">' +
+                            '<div class="progress">' +
+                               '<svg class="progress-circle" width="200px" height="200px" xmlns="http://www.w3.org/2000/svg">' +
+                                '<circle class="progress-circle-back" cx="80" cy="80" r="74"></circle>' +
+                                    '<circle class="progress-circle-prog" cx="80" cy="80" r="74"></circle>' +
+                                '</svg>' +
+                                '<div class="progress-text" id="myprogress" data-progress="0">0%</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' ;
+    
+                        swal({
+                                title: 'Modify your shoe',
+                                html: html,
+                                confirmButtonClass: 'btn btn-success',
+                                confirmButtonText: 'Modify',
+                                buttonsStyling: false
+                            }).then(function(result) {
+                                swal({
+                                    type: 'success',
+                                    html: 'Your shoe is modified and our tracking ID : <strong>' +
+                                            123456789 +
+                                          '</strong>',
+                                    confirmButtonClass: 'btn btn-success',
+                                    buttonsStyling: false
+            
+                                })
+                            }).catch(swal.noop)
+            
                     }
         },
 
