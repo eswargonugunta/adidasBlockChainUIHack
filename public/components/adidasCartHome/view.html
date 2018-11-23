@@ -2,11 +2,11 @@
     <!-- Section: Products v.1 -->
     <!-- Image and text -->
     <nav class="navbar navbar-dark elegant-color">
-            <a class="navbar-brand" data-bind="events:{click : homeModel.logout}"  style="padding:0 20px">
+            <a class="navbar-brand" data-bind="events:{click : cartModel.logout}"  style="padding:0 20px">
               <img src="img/adidas_logo.png" height="70" alt="adidas logo">
             </a>
             
-            <a class="navbar-brand pull-right" data-bind="events:{click : homeModel.logout}"  style="padding:10px 20px;">
+            <a class="navbar-brand pull-right" data-bind="events:{click : cartModel.logout}"  style="padding:10px 20px;">
               <i class="fa fa-sign-out white-text d-inline-block align-top" rel="tooltip" title="Logout" style="font-size: 28px" ></i>
               
             </a>
@@ -52,20 +52,22 @@
         <h5>
           <strong>
             <a href="" class="dark-grey-text">${data[i].cartItem} </a>
-            
-            
-            
-          </strong>
+            </strong>
+          <hr/>
+          <strong> Seller </strong> : ${data[i].seller}
         </h5>
         </div>
         <div class="card-footer">
             <div class="price pull-left">
                 <h2 class="blue-text">
                   <strong>${data[i].price}</strong></h2>
+                  
               </div>
               <div class="pull-right">
-                  <button class="btn btn-just-icon btn-simple btn-google" onclick="demo.showSwal('trace')" style="padding:0">
+                  #if(data[i].itemVerified == 1){#
+                <button  class="btn btn-just-icon btn-simple btn-google" value="{data[i].data}" data-bind="click: cartModel.showData" style="padding:0">
                     <i class="fa fa-link" style="font-size:20px" rel="tooltip" title="Show History"> </i> </button>
+                  #}#
                     <button class="btn btn-just-icon btn-simple btn-twitter"  style="padding:0">
                         <i class="fa fa-shopping-bag" style="font-size:20px" rel="tooltip" title="Add to Bag"> </i> </button>
               </div>
