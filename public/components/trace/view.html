@@ -1,0 +1,150 @@
+<div data-role="view" data-title="trace" data-layout="main-nonav" data-model="app.trace" data-show="app.trace.onShow"
+    data-after-show="app.trace.afterShow" id="adidasItemCreateScreen" class="screen">
+    <div class="wrapper">
+        <div class="dashboard-page" data-image="img/adidas_bg.jpg">
+            <div class="main-panel" style="width:100%">
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="col-sm-8 col-sm-offset-2">
+                            <!--      Wizard container        -->
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Adidas</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="row">
+                                            <div class="row" id="diagramsection">
+                                                <div class="col-lg-12 col-sm-12">
+                                                    <h2 class="content-sub-heading">Transaction Information</h2>
+                                                    <div class="card">
+                                                        <div class="card-main">
+                                                            <div class="card-inner">
+                                                                <div style="margin:1em">
+                                                                    <div id="diagram" style="height:500px"></div>
+                                                                    <div id="blockwindow"></div>
+                                                                    <div class="fbtn-container" style="right:60px;bottom:200px;">
+                                                                        <div class="fbtn-inner">
+                                                                            <div class='my-legend'>
+                                                                                <div class='legend-title'>Legends</div>
+                                                                                <div class='legend-scale'>
+                                                                                    <ul class='legend-labels'>
+                                                                                        <li><span style='background:#2196f3;'></span>Shoe
+                                                                                            Creation</li>
+                                                                                        <li><span style='background:#00e68a;'></span>Inventory
+                                                                                            Transfer</li>
+                                                                                        <li><span style='background:#1e4c96;'></span>Retailer</li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                                <!--<div class='legend-source'>Source: <a href="#link to source">Name of source</a></div>-->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- <footer class="footer">
+                    <div class="container-fluid">
+                        <p class="copyright pull-right text-white" style="color:white">
+                            &copy;
+                            <a style="color:white"> Andril Veedu </a>,  made with love for a better Home
+                        </p>
+                    </div>
+                </footer> -->
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script id="categorylistTemplate" type="text/x-kendo-template">
+    # var j=0; for(var i=0;i < data.length;i++) { j++; #
+    #if (j == 1){ #
+    <tr>
+        #} #
+
+        <td width="25%">
+            <div class="choice" data-toggle="wizard-radio">
+                <input type="radio" name="category" value="${data[i].barcode}">
+                <div class="icon">
+                    <img src="${data[i].img}" class="itemIcon"/>
+                </div>
+                <h6>${data[i].cartItem}</h6>
+            </div>
+        </td>
+        #if (j == 4){ j =0;#
+        </tr>
+        #} #
+    #}#
+</script>
+<script type="text/x-kendo-template" id="channelHeaderTemplate">
+    <table id="grid">
+            <colgroup>
+                <col style="width:180px" />
+                <col style="width:400px" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td>Version</td>
+                    <td>${data.version}</td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td>${data.type}</td>
+                </tr>
+                <tr>
+                    <td>Timestamp</td>
+                    <td>${data.timestamp}</td>
+                </tr>
+                <tr>
+                    <td>Channel</td>
+                    <td>${data.channel_id}</td>
+                </tr>
+                <tr>
+                    <td>Transaction ID</td>
+                    <td>${data.tx_id}</td>
+                </tr>
+            </tbody>
+<table>
+</script>
+<script type="text/x-kendo-template" id="payloadTemplate">
+
+
+    <hr/>
+    <table id="grid1" class"table">
+            <colgroup>
+                <col style="width:180px" />
+                <col style="width:400px" />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td>Key</td>
+                    <td>Value</td>
+                </tr>
+                # for (var i=0 ; i < data.rwset.writes.length; i++){ var data1 = data.rwset.writes[i]; #
+# console.log(data1); #
+                 <tr>
+                    <td>${data1.key}</td>
+                    <td>${data1.value}</td>
+                </tr>
+                #}#
+
+            </tbody>
+    <table>
+</script>

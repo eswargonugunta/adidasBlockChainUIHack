@@ -60,6 +60,56 @@ app.localization.registerView('adidasTransferHome');
                     "price":"$130"
                 }
             ],
+            getSneaker: function(e){
+                 var source = e.target.value;
+                 alert(source);
+                 if(source == "adidas"){
+                     //transferModel.getAllSneaker();
+                 } else  {
+                     var result = app.queryApi("getSneaker", [source]);
+                     var inventoryData =[];
+                     if (result.status == 200) {
+                         var list = JSON.parse(result.responseText);
+                         var sneakers = list.transfer;
+                         
+                         $.each(sneakers,function(k,v){
+                             $.each(transferModel.data,function(key,val){
+                                 var value = JSON.parse(v);
+                                 if(value.id == val.barcode){
+                                     inventoryData.push(val);
+                                 }
+                             })
+                         })
+                     }
+ 
+                     var template = kendo.template($("#cartlistTemplate").html());
+ 
+ 
+                     var tempData = {
+                         data: inventoryData
+                     }
+                     var result = template(tempData);
+                     $("#cartlist").html(result);
+ 
+                     $(".image-checkbox").each(function () {
+                         if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
+                           $(this).addClass('image-checkbox-checked');
+                         }
+                         else {
+                           $(this).removeClass('image-checkbox-checked');
+                         }
+                       });
+                       
+                       // sync the state to the input
+                       $(".image-checkbox").on("click", function (e) {
+                         $(this).toggleClass('image-checkbox-checked');
+                         var $checkbox = $(this).find('input[type="checkbox"]');
+                         $checkbox.prop("checked",!$checkbox.prop("checked"));
+ 
+                         e.preventDefault();
+                       });
+                 } 
+             },
             getAllSneaker: function (e) {
                 var result = app.queryApi("getSneaker", ["sneakerids"]);
                 if (result.status == 200) {
@@ -131,6 +181,12 @@ app.localization.registerView('adidasTransferHome');
                 var args = [];
 
                 var sneakerList = [];
+                var from = $("#source").val();
+
+                if(from == sender){
+                    app.showNotification("Sender & Receiver should not be the same.")
+                    return false;
+                }
 
                 var result1 = app.queryApi("getSneaker", [barcode]);
                 if (result1.status == 200) {
@@ -144,7 +200,7 @@ app.localization.registerView('adidasTransferHome');
                     id: barcode,
                     value: JSON.stringify(sneakerList),
                     header: "Transfered to "+sender,
-                    from: "adidas",
+                    from: from,
                     to: sender,
                     date: new Date().toLocaleDateString()
                 }
@@ -152,7 +208,7 @@ app.localization.registerView('adidasTransferHome');
                 args.push(JSON.stringify(zeroarg));
                
                 // args[1]
-                args.push("adidas");
+                args.push(from);
                 // args[2]
                 args.push(sender);
                 console.log(sneakerList);
@@ -163,6 +219,12 @@ app.localization.registerView('adidasTransferHome');
                     app.showNotification("Sneaker Transfered successfully");
                 }
 
+                var type = "TRANSFER";
+
+                if(from == "E-Commerce"){
+                    type = "RMTRANSFER";
+                }
+
                 for (var i = 0; i < sneakerList.length ; i++) {
                     var adidasid = sneakerList[i].adidasid;
                     args = []
@@ -170,7 +232,7 @@ app.localization.registerView('adidasTransferHome');
                     args[1] = "sneakerhdr-" + adidasid;
                     var headerjson = {
                         block: height + "",
-                        type: "TRANSFER",
+                        type: type,
                         value: sender,
                         prevHash: prevBlock.currentBlockHash
                     };
@@ -199,6 +261,9 @@ app.localization.registerView('adidasTransferHome');
 
         transferModel.getAllSneaker();
 
+        $("#source").on("change",function(e){
+            transferModel.getSneaker(e);
+        })
         
         
     });

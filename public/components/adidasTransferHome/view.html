@@ -1,5 +1,6 @@
-<div data-role="view" data-title="AdidasTransferHome" data-layout="main-nonav" data-model="app.adidasTransferHome" data-show="app.adidasTransferHome.onShow"
-    data-after-show="app.adidasTransferHome.afterShow" id="adidasTransferScreen" class="screen">
+<div data-role="view" data-title="AdidasTransferHome" data-layout="main-nonav" data-model="app.adidasTransferHome"
+    data-show="app.adidasTransferHome.onShow" data-after-show="app.adidasTransferHome.afterShow" id="adidasTransferScreen"
+    class="screen">
     <div class="wrapper">
         <div class="dashboard-page" data-image="img/adidas_bg.jpg">
             <div class="main-panel" style="width:100%">
@@ -16,25 +17,36 @@
                                         <div class="col-md-12">
 
                                             <form method="get">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label class="floating-label" for="source">Select Source</label>
+                                                        <select id="source" class="form-control" style="width: 100%;">
+                                                            <option value="adidas">Adidas</option>
+                                                            <option value="E-Commerce">E-Commerce</option>
+                                                            <option value="Wholesale">Wholesale</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
 
                                                 <div class="row" id="cartlist" style="padding:20px">
 
                                                 </div>
-                                                <div class="row" >
-                                                <div class="col-md-6">
-                                                    <label class="floating-label" for="sender">Select Receiver</label>
-                                                    <select id="sender" class="form-control"  style="width: 100%;">
-                                                        <option value="E-Commerce">E-Commerce</option>
-                                                        <option value="Wholesale">Wholesale</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-6 pull-right">
-                                                        <button class="btn btn-success btn-round pull-right" data-bind="click: transferModel.createTransfers" type="button" style="margin-top: 15px">
-                                                                <i class="material-icons">local_shipping</i>
-                                                                TRANSFER TO VENDOR
-                                                            </button>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label class="floating-label" for="sender">Select Receiver</label>
+                                                        <select id="sender" class="form-control" style="width: 100%;">
+                                                            <option value="E-Commerce">E-Commerce</option>
+                                                            <option value="Wholesale">Wholesale</option>
+                                                        </select>
                                                     </div>
-                                            </div>
+                                                    <div class="col-md-6 pull-right">
+                                                        <button class="btn btn-success btn-round pull-right" data-bind="click: transferModel.createTransfers"
+                                                            type="button" style="margin-top: 15px">
+                                                            <i class="material-icons">local_shipping</i>
+                                                            TRANSFER TO VENDOR
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </form>
 
                                         </div>

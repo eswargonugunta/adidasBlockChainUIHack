@@ -65,7 +65,7 @@
               </div>
               <div class="pull-right">
                   #if(data[i].itemVerified == 1){#
-                <button  class="btn btn-just-icon btn-simple btn-google" value="{data[i].data}" data-bind="click: cartModel.showData" style="padding:0">
+                <button type="button" class="btn btn-just-icon btn-simple btn-google" onclick="demo.showSwal('block-html',${data[i].data})" style="padding:0">
                     <i class="fa fa-link" style="font-size:20px" rel="tooltip" title="Show History"> </i> </button>
                   #}#
                     <button class="btn btn-just-icon btn-simple btn-twitter"  style="padding:0">

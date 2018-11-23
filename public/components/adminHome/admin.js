@@ -88,7 +88,7 @@ app.localization.registerView('admin');
 	            		 
 	            		 adminModel.set("blockloaded",loaded+1);
 	            		 
-	            		 if(data.data.data[0]){
+	            		 if(data.data.data[0] && data.data.data[0].payload.header.channel_header.tx_id){
 	            			 $("#"+data.data.data[0].payload.header.channel_header.tx_id).bind("click",function(e){ 
 	            				 var txid = e.target.id;
 	            				 try{

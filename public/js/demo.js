@@ -789,7 +789,7 @@ demo = {
         }
     },
 
-    showSwal: function(type){
+    showSwal: function(type,data){
         if(type == 'basic'){
         	swal({
                 title: "Here's a message!",
@@ -876,7 +876,29 @@ demo = {
                         'and other HTML tags'
                 }).catch(swal.noop)
 
-    	}else if(type == 'auto-close'){
+    	} else if(type == 'block-html'){
+
+            console.log(data);
+            var links ="<table>";
+            if(data){
+                $.each(data,function(k,v){
+                    console.log(v);
+                    var id = v.adidasid;
+                    links += "<tr><a href='http://localhost:6001/#components/trace/view.html?id="+id+"'>"+id+"</a></tr>";
+
+                })
+            }
+            
+            links += "</table>";
+            console.log(links);
+        	swal({
+                title: 'Blockchain Data',
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                html: links
+                }).catch(swal.noop)
+
+    	} else if(type == 'auto-close'){
         	swal({ title: "Auto close alert!",
             	   text: "I will close in 2 seconds.",
             	   timer: 2000,

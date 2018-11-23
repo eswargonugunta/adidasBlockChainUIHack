@@ -128,6 +128,7 @@ app.localization.registerView('adidasCartHome');
                             blockchainData["seller"] = vendors[i];
                             blockchainData["itemVerified"] = 1;
                             blockchainData["data"] = value.value;
+                            blockchainData["transfer"] = value.value;
                             templateData.push(blockchainData);
                             
                         }
