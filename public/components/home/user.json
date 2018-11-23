@@ -8,8 +8,8 @@
     "securecontext": "user_type1_0"
   },
   {
-    "username": "adidasAdmin",
-    "password": "adidasAdmin",
+    "username": "admin",
+    "password": "admin",
     "displayname": "adidasTransfer",
     "peer": "adidasTransfer",
     "chaincodeid": "fabcar",
@@ -48,8 +48,8 @@
     "securecontext" : "user_type1_0"
   },
   {
-    "username": "admin",
-    "password": "admin",
+    "username": "blockadmin",
+    "password": "blockadmin",
     "displayname" : "Blockchain Admin",
     "peer": "admin",
     "chaincodeid": "fabcar",
