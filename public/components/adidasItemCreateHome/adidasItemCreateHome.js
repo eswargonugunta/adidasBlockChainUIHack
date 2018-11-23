@@ -232,36 +232,20 @@ app.localization.registerView('adidasItemCreateHome');
 
         var data = [
             {
-                "category": "Shopping",
-                "img": "img/category/shopping.png"
+                "itemType": "Footwear",
+                "img": "img/category/Footwear.png"
             },
             {
-                "category": "Bills",
-                "img": "img/category/bills.png"
+                "itemType": "Clothing",
+                "img": "img/category/clothing.png"
             },
             {
-                "category": "Dog",
-                "img": "img/category/dog.png"
+                "itemType": "Accessories",
+                "img": "img/category/accessories.png"
             },
             {
-                "category": "EMI",
-                "img": "img/category/emi.png"
-            },
-            {
-                "category": "Food",
-                "img": "img/category/food.png"
-            },
-            {
-                "category": "Fuel",
-                "img": "img/category/fuel.png"
-            },
-            {
-                "category": "Transfer",
-                "img": "img/category/Transfer.png"
-            },
-            {
-                "category": "Groceries",
-                "img": "img/category/groceries.png"
+                "itemType": "Sports",
+                "img": "img/category/sports.png"
             }
         ];
 

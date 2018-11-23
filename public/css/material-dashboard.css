@@ -3256,8 +3256,8 @@ be a descendant of the grid when it is being dragged.
 .wizard-card .choice .icon {
   text-align: center;
   vertical-align: middle;
-  height: 40px;
-  width: 40px;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
   color: #999999;
   margin: 0 auto 20px;

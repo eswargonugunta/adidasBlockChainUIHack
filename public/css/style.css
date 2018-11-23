@@ -7,3 +7,7 @@
     width: 65px;
     padding: 7px 7px;
 }
+.itemIcon{
+    width: 70px !important;
+    padding-top: 10px;
+}
