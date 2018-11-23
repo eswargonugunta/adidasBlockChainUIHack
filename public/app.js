@@ -61,10 +61,14 @@
         tabstrip.clear();
     };
 
-    app.showNotification = function(message, time) {
-        var autoHideAfter = time ? time : 3000;
-        app.notification.find('.notify-pop-up__content').html(message);
-        app.notification.fadeIn("slow").delay(autoHideAfter).fadeOut("slow");
+    app.showNotification = function (message, time) {
+        var autoHideAfter = time ? time : 2000;
+        swal({
+            title: "Message!",
+            text: message,
+            timer: autoHideAfter,
+            showConfirmButton: false
+        }).catch(swal.noop);
     };
 
     
@@ -95,6 +99,8 @@
 	         }
         };
 
+        console.log(JSON.stringify(data));
+
         return this.postData(url, data); 
     }
 
@@ -119,7 +125,7 @@
     }
 
     app.getBlock = function (block) {
-        var url = app.createPeer("/chain/blocks/" + block);
+        var url = "http://0.0.0.0:3000/api/fabric/1_0/channels/mychannel/blocks?blockId=" + block;
         var result = {};
         $.ajax({
             async: false,

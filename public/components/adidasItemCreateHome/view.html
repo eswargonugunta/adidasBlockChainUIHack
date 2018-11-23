@@ -1,4 +1,36 @@
-<div data-role="view" data-title="AdidasItemCreateHome" data-layout="main-nonav" data-model="app.adidasItemCreateHome" data-show="app.adidasItemCreateHome.onShow" data-after-show="app.adidasItemCreateHome.afterShow" id="adidasItemCreateScreen" class="screen">
+<div data-role="view" data-title="AdidasItemCreateHome" data-layout="main-nonav" data-model="app.adidasItemCreateHome" data-show="app.adidasItemCreateHome.onShow"
+    data-after-show="app.adidasItemCreateHome.afterShow" id="adidasItemCreateScreen" class="screen">
+    <nav class="navbar navbar-primary navbar-transparent navbar-absolute">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+    
+                <a class="navbar-brand" href="/">Adidas</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="material-icons">assignments</i>
+                            <span class="notification" data-bind="text : spendModel.inventory"></span>
+                            <p class="hidden-lg hidden-md">
+                                Inventory
+                                <b class="caret"></b>
+                            </p>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    
     <div class="wrapper">
         <div class="dashboard-page" data-image="img/adidas_bg.jpg">
             <div class="main-panel" style="width:100%">
@@ -6,172 +38,213 @@
                     <div class="container-fluid">
                         <div class="col-sm-8 col-sm-offset-2">
                             <!--      Wizard container        -->
-                            <div class="wizard-container">
-                                <div class="card wizard-card" data-color="rose" id="wizardProfile">
-                                    <form class="form-horizontal">
-                                        <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+                            
+                        </div>
 
-                                        <div class="wizard-header">
-                                            <h3 class="wizard-title">
-                                                Create Shoe
-                                            </h3>
-                                        </div>
-                                        <div class="wizard-navigation">
-                                            <ul>
-                                                <li><a href="#mycategory" data-toggle="tab">Category</a></li>
-                                                <li><a href="#about" data-toggle="tab">Details</a></li>
-                                                <li><a href="#address" data-toggle="tab">More</a></li>
-                                            </ul>
-                                        </div>
-
-                                        <div class="tab-content">
-                                            <div class="tab-pane" id="mycategory">
-                                                <div class="row">
-                                                    <div class="col-lg-10 col-lg-offset-1">
-                                                            <div class="row">
-                                                                
-                                                                <div class="col-lg-12">
-                                                                        <div class="table-responsive">
-                                                                                <table class="table">
-                                                                                    <tbody id="categorylist"></tbody>
-                                                                                </table>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Adidas</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <ul class="nav nav-pills nav-pills-icons nav-pills-rose nav-stacked" role="tablist">
+                                                    <!--
+                                                        color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+                                                    -->
+                                                    <li class="active">
+                                                        <a href="#dashboard-2" role="tab" data-toggle="tab">
+                                                            <i class="material-icons">dashboard</i>
+                                                            Manufacturing
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#schedule-2" role="tab" data-toggle="tab">
+                                                            <i class="material-icons">schedule</i>
+                                                            Traceability
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="tab-content">
+                                                    <div class="tab-pane active" id="dashboard-2">
+                                                        <div class="wizard-container">
+                                                            <div class="card wizard-card" data-color="rose" id="wizardProfile">
+                                                                <form class="form-horizontal">
+                                                                    <!--        You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+                            
+                                                                    <div class="wizard-header">
+                                                                        <h3 class="wizard-title">
+                                                                            Create Shoe
+                                                                        </h3>
+                                                                    </div>
+                                                                    <div class="wizard-navigation">
+                                                                        <ul>
+                                                                            <li>
+                                                                                <a href="#mycategory" data-toggle="tab">Category</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#about" data-toggle="tab">Details</a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#address" data-toggle="tab">More</a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                            
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane" id="mycategory">
+                                                                            <div class="row">
+                                                                                <div class="col-lg-10 col-lg-offset-1">
+                                                                                    <div class="row">
+                            
+                                                                                        <div class="col-lg-12">
+                                                                                            <div class="table-responsive">
+                                                                                                <table class="table">
+                                                                                                    <tbody id="categorylist"></tbody>
+                                                                                                </table>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                            
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
+                            
+                                                                        <div class="tab-pane" id="about">
+                                                                            <div class="row">
+                                                                                <div class="col-sm-6">
+                                                                                    <div class="input-group">
+                                                                                        <span class="input-group-addon">
+                                                                                            <i class="material-icons">description</i>
+                                                                                        </span>
+                                                                                        <div class="form-group label-floating">
+                                                                                            <input name="item" data-bind="value: spendModel.item" type="text" placeholder="Enter Adidas Item Tag/Barcode" class="form-control">
+                                                                                        </div>
+                                                                                    </div>
+                            
+                                                                                    <div class="input-group">
+                                                                                        <span class="input-group-addon">
+                                                                                            <i class="material-icons">color_lens</i>
+                                                                                        </span>
+                                                                                        <div class="form-group label-floating">
+                                                                                            <input name="item" data-bind="value: spendModel.color" type="text" placeholder="" class="form-control">
+                                                                                        </div>
+                                                                                    </div>
+                            
+                                                                                    <div class="input-group">
+                                                                                        <span class="input-group-addon">
+                                                                                            <i class="material-icons">money</i>
+                                                                                        </span>
+                                                                                        <div class="form-group">
+                                                                                            <select class="form-control" name="material" data-bind="value: spendModel.material">
+                                                                                                <option selected value="leather">Leather</option>
+                                                                                                <option value="synthetic">Synthetic</option>
+                                                                                                <option value="foam">Foam</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-10 col-sm-offset-1">
+                            
+                                                                                    <input type="text" class="tagsinput" data-role="tagsinput" data-color="rose" data-bind="value: spendModel.tags" />
+                            
+                                                                                    <!-- You can change data-color="rose" with one of our colors primary | warning | info | danger | success -->
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                            
+                                                                        <div class="tab-pane" id="address">
+                                                                            <div class="row">
+                                                                                <div class="col-sm-7 col-sm-offset-1">
+                                                                                    <div class="form-group">
+                                                                                        <div class="form-group label-floating">
+                                                                                            <label class="control-label"> Description or Special Information</label>
+                                                                                            <textarea class="form-control" data-bind="value: spendModel.note" rows="5"></textarea>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="wizard-footer">
+                                                                        <div class="pull-right">
+                                                                            <input type='button' class='btn btn-next btn-fill btn-rose btn-wd' name='next' value='Next' />
+                                                                            <input type='button' id="finish" class='btn btn-finish btn-fill btn-rose btn-wd' data-bind="events:{click: spendModel.createSneaker}" name='finish'
+                                                                                value='Finish' />
+                                                                        </div>
+                            
+                                                                        <div class="pull-left">
+                                                                            <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <!-- wizard container -->
+                                                    </div>
+                                                    <div class="tab-pane" id="schedule-2">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon">
+                                                                        <i class="material-icons">description</i>
+                                                                    </span>
+                                                                    <div class="form-group label-floating">
+                                                                        <input name="item" data-bind="value: spendModel.item" type="text" placeholder="Enter Adidas Item Tag/Barcode" class="form-control">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="pull-right">
+                                                                    <input type='button' id="track" class='btn btn-finish btn-fill btn-rose btn-wd' data-bind="events:{click: spendModel.showTransaction}" name='track'
+                                                                        value='Trace' />
                                                                 </div>
                                                             </div>
-                                                            <div class="row">
-                                                                    <div class="col-sm-6">
-                                                                        <div class="input-group">
-                                                                            <span class="input-group-addon">
-                                                                                <i class="material-icons">zoom_out_map</i>
-                                                                            </span>
-                                                                            <div class="form-group label-floating">
-                                                                                    <select class="form-control">
-                                                                                            <option selected>Enter Size</option>
-                                                                                            <option value="1">One</option>
-                                                                                            <option value="2">Two</option>
-                                                                                            <option value="3">Three</option>
-                                                                                    </select>
-                                                                            </div>
-                                                                        </div>
-                
-                                                                        <div class="input-group">
-                                                                            <span class="input-group-addon">
-                                                                                <i class="material-icons">color_lens</i>
-                                                                            </span>
-                                                                            <div class="form-group label-floating">
-                                                                                    <select class="form-control">
-                                                                                            <option selected>Enter color</option>
-                                                                                            <option value="1">One</option>
-                                                                                            <option value="2">Two</option>
-                                                                                            <option value="3">Three</option>
-                                                                                    </select>
-                                                                            </div>
-                                                                        </div>
-                
-                                                                        <div class="input-group">
-                                                                            <span class="input-group-addon">
-                                                                                <i class="material-icons">date_range</i>
-                                                                            </span>
-                                                                            <div class="form-group">
-                                                                                    <select class="form-control">
-                                                                                            <option selected>Technology</option>
-                                                                                            <option value="1">One</option>
-                                                                                            <option value="2">Two</option>
-                                                                                            <option value="3">Three</option>
-                                                                                    </select>
+
+                                                            
+                                                        </div>
+
+                                                        <div class="row" id="diagramsection">
+                                                            <div class="col-lg-12 col-sm-12">
+                                                                <h2 class="content-sub-heading">Transaction Information</h2>
+                                                                <div class="card">
+                                                                    <div class="card-main">
+                                                                        <div class="card-inner">
+                                                                            <div style="margin:1em">
+                                                                                <div id="diagram" style="height:500px"></div>
+                                                                                <div id="blockwindow"></div>
+                                                                                <div class="fbtn-container" style="right:60px;bottom:200px;">
+                                                                                    <div class="fbtn-inner">
+                                                                                        <div class='my-legend'>
+                                                                                            <div class='legend-title'>Legends</div>
+                                                                                            <div class='legend-scale'>
+                                                                                                <ul class='legend-labels'>
+                                                                                                    <li><span style='background:#2196f3;'></span>Shoe Creation</li>
+                                                                                                    <li><span style='background:#00e68a;'></span>Inventory Transfer</li>
+                                                                                                    <li><span style='background:#1e4c96;'></span>Retailer</li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                            <!--<div class='legend-source'>Source: <a href="#link to source">Name of source</a></div>-->
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="tab-pane" id="about">
-                                                <div class="row">
-                                                    <div class="col-sm-6">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="material-icons">description</i>
-                                                            </span>
-                                                            <div class="form-group label-floating">
-                                                                <input name="item" data-bind="value: spendModel.item" type="text" placeholder="Spend for" class="form-control">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="material-icons">money</i>
-                                                            </span>
-                                                            <div class="form-group label-floating">
-                                                                <input name="amount" data-bind="value: spendModel.amount" placeholder="0.0" type="number" class="form-control">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon">
-                                                                <i class="material-icons">date_range</i>
-                                                            </span>
-                                                            <div class="form-group">
-                                                                <input name="date" data-bind="value: spendModel.date" type="text" class="form-control datepicker">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-10 col-sm-offset-1">
-                                                        <div class="radio radio-inline">
-                                                            <label>
-                                                                <input type="radio" name="transactiontype" value="Debit"> Debit
-                                                            </label>
-                                                        </div>
-
-                                                        <div class="radio radio-inline">
-                                                            <label>
-                                                                <input type="radio" name="transactiontype" value="Credit"> Credit
-                                                            </label>
-                                                        </div>
-
-                                                        <div class="radio radio-inline">
-                                                            <label>
-                                                                <input type="radio" name="transactiontype" value="Cash"> Cash
-                                                            </label>
-                                                        </div>
-
-
-                                                        <input type="text" class="tagsinput" data-role="tagsinput" data-color="rose" data-bind="value: spendModel.tags" />
-
-                                                        <!-- You can change data-color="rose" with one of our colors primary | warning | info | danger | success -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="tab-pane" id="address">
-                                                <div class="row">
-                                                    <div class="col-sm-7 col-sm-offset-1">
-                                                        <div class="form-group">
-                                                            <div class="form-group label-floating">
-                                                                <label class="control-label"> Description or Special Information</label>
-                                                                <textarea class="form-control" data-bind="value: spendModel.note" rows="5"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="wizard-footer">
-                                            <div class="pull-right">
-                                                <input type='button' class='btn btn-next btn-fill btn-rose btn-wd' name='next' value='Next' />
-                                                <input type='button' class='btn btn-finish btn-fill btn-rose btn-wd' data-bind="events:{click: spendModel.addItem}" name='finish' value='Finish' />
-                                            </div>
-
-                                            <div class="pull-left">
-                                                <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
-                            </div> <!-- wizard container -->
+                            </div>
                         </div>
 
                     </div>
@@ -188,6 +261,8 @@
             </div>
         </div>
     </div>
+
+
 </div>
 <script id="categorylistTemplate" type="text/x-kendo-template">
     # var j=0; for(var i=0;i < data.length;i++) { j++; #
@@ -197,15 +272,82 @@
 
         <td width="25%">
             <div class="choice" data-toggle="wizard-radio">
-                <input type="radio" name="category" value="${data[i].itemValue}">
+                <input type="radio" name="category" value="${data[i].barcode}">
                 <div class="icon">
                     <img src="${data[i].img}" class="itemIcon"/>
                 </div>
-                <h6>${data[i].itemType}</h6>
+                <h6>${data[i].cartItem}</h6>
             </div>
         </td>
         #if (j == 4){ j =0;#
         </tr>
         #} #
     #}#
+</script>
+<script type="text/x-kendo-template" id="channelHeaderTemplate">
+    <table id="grid">
+            <colgroup>
+                <col style="width:180px" />
+                <col style="width:400px" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th data-field="channel">Channel Header</th>
+                    <th data-field="value"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Version</td>
+                    <td>${data.version}</td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td>${data.type}</td>
+                </tr>
+                <tr>
+                    <td>Timestamp</td>
+                    <td>${data.timestamp}</td>
+                </tr>
+                <tr>
+                    <td>Channel</td>
+                    <td>${data.channel_id}</td>
+                </tr>
+                <tr>
+                    <td>Transaction ID</td>
+                    <td>${data.tx_id}</td>
+                </tr>
+            </tbody>
+<table>
+</script>
+<script type="text/x-kendo-template" id="payloadTemplate">
+
+
+    <hr/>
+    <table id="grid1">
+            <colgroup>
+                <col style="width:180px" />
+                <col style="width:400px" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th data-field="channel">Payload</th>
+                    <th data-field="value"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Key</td>
+                    <td>Value</td>
+                </tr>
+                # for (var i=0 ; i < data.rwset.writes.length; i++){ var data1 = data.rwset.writes[i]; #
+# console.log(data1); #
+                 <tr>
+                    <td>${data1.key}</td>
+                    <td>${data1.value}</td>
+                </tr>
+                #}#
+
+            </tbody>
+    <table>
 </script>

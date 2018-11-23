@@ -5,7 +5,7 @@
     "displayname": "adidas",
     "peer": "adidasItemCreate",
     "chaincodeid": "fabcar",
-    "securecontext": "user_type1_0"
+    "securecontext": "SonHrtURlySy"
   },
   {
     "username": "seller",
@@ -13,7 +13,7 @@
     "displayname": "seller",
     "peer": "vp0",
     "chaincodeid": "fabcar",
-    "securecontext": "user_type1_0"
+    "securecontext": "SonHrtURlySy"
   },
   {
     "username": "cart",
@@ -21,7 +21,7 @@
     "displayname" : "Cart",
     "peer": "adidasCart",
     "chaincodeid": "fabcar",
-    "securecontext" : "user_type1_0"
+    "securecontext" : "SonHrtURlySy"
   },
   {
     "username": "package",
@@ -29,7 +29,7 @@
     "displayname" : "Meat Packaging Ltd",
     "peer": "vp2",
     "chaincodeid": "fabcar",
-    "securecontext" : "user_type1_0"
+    "securecontext" : "SonHrtURlySy"
   },
   {
     "username": "retailer",
@@ -37,7 +37,7 @@
     "displayname" : "Retailer",
     "peer": "vp3",
     "chaincodeid": "fabcar",
-    "securecontext" : "user_type1_0"
+    "securecontext" : "SonHrtURlySy"
   },
   {
     "username": "admin",
@@ -45,7 +45,7 @@
     "displayname" : "Blockchain Admin",
     "peer": "admin",
     "chaincodeid": "fabcar",
-    "securecontext" : "user_type1_0"
+    "securecontext" : "SonHrtURlySy"
   }
 
 ]
