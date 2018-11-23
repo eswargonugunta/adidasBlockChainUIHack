@@ -8,6 +8,14 @@
     "securecontext": "user_type1_0"
   },
   {
+    "username": "adidasAdmin",
+    "password": "adidasAdmin",
+    "displayname": "adidasTransfer",
+    "peer": "adidasTransfer",
+    "chaincodeid": "fabcar",
+    "securecontext": "user_type1_0"
+  },
+  {
     "username": "seller",
     "password": "admin",
     "displayname": "seller",
