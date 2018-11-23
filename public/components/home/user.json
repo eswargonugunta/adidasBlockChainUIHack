@@ -16,6 +16,14 @@
     "securecontext": "user_type1_0"
   },
   {
+    "username": "designer",
+    "password": "designer",
+    "displayname": "adidasDesigner",
+    "peer": "adidasDesigner",
+    "chaincodeid": "fabcar",
+    "securecontext": "user_type1_0"
+  },
+  {
     "username": "seller",
     "password": "admin",
     "displayname": "seller",
