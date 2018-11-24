@@ -274,7 +274,14 @@ app.localization.registerView('trace');
             gradientcolor = "#8700ff";
             content = "Batch Created";
         }
-        else if (dataItem.type == "TRANSFER") {
+        else if (dataItem.type == "TRANSFER" && dataItem.value == "Factory") {
+            name = dataItem.value;
+            title = "";
+            image = "img/factory.png";
+            gradientcolor = "#00e68a";
+            content = "Transfered to Dealer";
+        }
+        else if (dataItem.type == "TRANSFER" && dataItem.value != "Factory") {
             name = dataItem.value;
             title = "";
             image = "img/transfer.png";

@@ -908,7 +908,7 @@ demo = {
                 $.each(data,function(k,v){
                     console.log(v);
                     var id = v.adidasid;
-                    links += "<tr><td><a href='http://192.168.43.226:6001/#components/trace/view.html?id="+id+"'>"+id+"</a></td></tr>";
+                    links += "<tr><td><a target='_blank' href='http://192.168.43.226:6001/#components/trace/view.html?id="+id+"'>"+id+"</a></td></tr>";
                     links += "<tr><td><img src='img/adidasVerify.png' style='width:50px' />  The Product is Adidas Authenticated</td></tr>";
 
                 })

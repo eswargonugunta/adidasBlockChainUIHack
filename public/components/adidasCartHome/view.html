@@ -22,12 +22,14 @@
     <div class="row" id="cartlist">
     </div>
 
-  </section>Adidas
-  Adidas
-</div>Adidas
+  </section>
+</div>
 <script type="text/x-kendoAdidas-template" id="cartlistTemplate">
 
   #for(var i=0;i <data.length;i++){#
+    #if((i+1)%4 == 0){#
+      <div class="row">
+      #}#
   <div class="col-md-3">
     
     <div class="card align-items-center" >
@@ -75,5 +77,8 @@
         
       </div>
 </div>
+#if((i+1)%4 == 0){#
+</div>
+  #}#
 #}#
 </script>

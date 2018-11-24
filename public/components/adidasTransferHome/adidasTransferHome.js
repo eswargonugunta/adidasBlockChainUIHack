@@ -86,11 +86,11 @@ app.localization.registerView('adidasTransferHome');
                      if (result.status == 200) {
                          var list = JSON.parse(result.responseText);
                          var sneakers = list.transfer;
-                         
+                         console.log(sneakers);
                          $.each(sneakers,function(k,v){
                              $.each(transferModel.data,function(key,val){
                                  var value = JSON.parse(v);
-                                 if(value.id == val.barcode){
+                                 if(value.id == val.barcode && value.to == source){
                                      inventoryData.push(val);
                                  }
                              })
@@ -120,6 +120,7 @@ app.localization.registerView('adidasTransferHome');
                          $(this).toggleClass('image-checkbox-checked');
                          var $checkbox = $(this).find('input[type="checkbox"]');
                          $checkbox.prop("checked",!$checkbox.prop("checked"));
+                         $('#qrprint').empty();
                          if($checkbox.prop("checked")){
                              var barcode = $("input[type='checkbox']:checked").val();
                              $('#qrprint').qrcode({
