@@ -65,6 +65,22 @@ app.localization.registerView('trace');
                     "model":"sport", 
                     "color":"Yellow",
                     "price":"$130"
+                },
+                {
+                    "cartItem": "ADIDAS X 17.3 FG FOOTBALL BOOTS WHITE",
+                    "barcode":"881117886499",
+                    "img": "img/cart/shoes7.jpg",
+                    "model":"sport", 
+                    "color":"White",
+                    "price":"$119"
+                },
+                {
+                    "cartItem": "Adidas ACE 17.3 AG Football Shoes Sneakers",
+                    "barcode":"000111111222",
+                    "img": "img/cart/shoes8.jpg",
+                    "model":"sport", 
+                    "color":"Gradient Black",
+                    "price":"$120"
                 }
             ],
             showTransaction: function () {
@@ -261,27 +277,14 @@ app.localization.registerView('trace');
         else if (dataItem.type == "TRANSFER") {
             name = dataItem.value;
             title = "";
-            image = "components/home/transfer.png";
+            image = "img/transfer.png";
             gradientcolor = "#00e68a";
             content = "Transfered to Dealer";
-        }
-        else if (dataItem.type == "RAWMEATCREATION") {
-            name = "Raw Meat";
-            title = dataItem.value;
-            image = "components/home/rawmeatcreate.png";
-            gradientcolor = "#f44336";
-            content = "Raw meats creation";
-        } else if (dataItem.type == "RAWMEATBATCH") {
-            name = "Raw Meat Batch";
-            title = dataItem.value;
-            image = "components/home/meat.gif";
-            gradientcolor = "#ffaa00";
-            content = "Raw meats Batch creation";
         } else if (dataItem.type == "RMTRANSFER") {
             name = dataItem.value;
             title = "";
-            image = "components/home/transfer.png";
-            gradientcolor = "#00e68a";
+            image = "img/transfer.png";
+            gradientcolor = "#1e4c96";
             content = "Transfered to "+dataItem.value;
         } else if (dataItem.type == "PKGCREATION") {
             name = "Package Creation";

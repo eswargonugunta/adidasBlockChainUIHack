@@ -63,6 +63,22 @@ app.localization.registerView('adidasCartHome');
                     "model":"sport", 
                     "color":"Yellow",
                     "price":"$130"
+                },
+                {
+                    "cartItem": "ADIDAS X 17.3 FG FOOTBALL BOOTS WHITE",
+                    "barcode":"881117886499",
+                    "img": "img/cart/shoes7.jpg",
+                    "model":"sport", 
+                    "color":"White",
+                    "price":"$119"
+                },
+                {
+                    "cartItem": "Adidas ACE 17.3 AG Football Shoes Sneakers",
+                    "barcode":"000111111222",
+                    "img": "img/cart/shoes8.jpg",
+                    "model":"sport", 
+                    "color":"Gradient Black",
+                    "price":"$120"
                 }
             ]
         });

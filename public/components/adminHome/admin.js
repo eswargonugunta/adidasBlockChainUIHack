@@ -110,18 +110,18 @@ app.localization.registerView('admin');
 			            				 $("#payload").html(payloadHtml);
 			            				 
 			            				 $("#grid1").kendoGrid({
-		            	                        height: 250
-		            	                    });
+											height: 250
+										});
 		            				 }
+									 
+									 swal({
+										title: 'Block Information',
+										buttonsStyling: false,
+										confirmButtonClass: "btn btn-success",
+										customClass: 'swal-wide',
+										html:$("#window").html()
+										}).catch(swal.noop)
 		            				 
-		            				 var dialog = $("#window").data("kendoWindow");
-		            				 if(dialog){
-		            					 $("#grid").kendoGrid({
-		            	                        height: 250
-		            	                    });
-		            					 
-		            					 dialog.open();
-		            				 }
 		            				 
 	            				 }catch(e){
 	            					 app.showNotification("The Block doesn't have proper details to show. If problem persist, contact system admin.")
@@ -143,7 +143,17 @@ app.localization.registerView('admin');
              }
          });
         
-    	 adminModel.load();
+		 adminModel.load();
+		 
+		 var $full_page = $('.dashboard-page');
+
+		 $full_page.fadeOut('fast', function () {
+			 $full_page.css('background-image', 'url("' + $full_page.attr('data-image') + '")');
+			 $full_page.css('height', '100%');
+			 $full_page.css('width', '100%');
+			 $full_page.css('background-size', 'contain');
+			 $full_page.fadeIn('fast');
+		 });
     });
 
     parent.set('afterShow', function (e) {

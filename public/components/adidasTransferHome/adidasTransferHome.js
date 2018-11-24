@@ -58,13 +58,28 @@ app.localization.registerView('adidasTransferHome');
                     "model":"sport", 
                     "color":"Yellow",
                     "price":"$130"
+                },
+                {
+                    "cartItem": "ADIDAS X 17.3 FG FOOTBALL BOOTS WHITE",
+                    "barcode":"881117886499",
+                    "img": "img/cart/shoes7.jpg",
+                    "model":"sport", 
+                    "color":"White",
+                    "price":"$119"
+                },
+                {
+                    "cartItem": "Adidas ACE 17.3 AG Football Shoes Sneakers",
+                    "barcode":"000111111222",
+                    "img": "img/cart/shoes8.jpg",
+                    "model":"sport", 
+                    "color":"Gradient Black",
+                    "price":"$120"
                 }
             ],
             getSneaker: function(e){
                  var source = e.target.value;
-                 alert(source);
                  if(source == "adidas"){
-                     //transferModel.getAllSneaker();
+                     transferModel.getAllSneaker();
                  } else  {
                      var result = app.queryApi("getSneaker", [source]);
                      var inventoryData =[];
@@ -105,7 +120,12 @@ app.localization.registerView('adidasTransferHome');
                          $(this).toggleClass('image-checkbox-checked');
                          var $checkbox = $(this).find('input[type="checkbox"]');
                          $checkbox.prop("checked",!$checkbox.prop("checked"));
- 
+                         if($checkbox.prop("checked")){
+                             var barcode = $("input[type='checkbox']:checked").val();
+                             $('#qrprint').qrcode({
+                                 text	: "http://192.168.43.226:6001/#components/trace/view.html?id="+barcode
+                             });
+                         }
                          e.preventDefault();
                        });
                  } 
@@ -158,6 +178,14 @@ app.localization.registerView('adidasTransferHome');
                         $(this).toggleClass('image-checkbox-checked');
                         var $checkbox = $(this).find('input[type="checkbox"]');
                         $checkbox.prop("checked",!$checkbox.prop("checked"));
+                        console.log($checkbox.prop("checked"));
+                        if($checkbox.prop("checked")){
+                            var barcode = $("input[type='checkbox']:checked").val();
+                            console.log(barcode);
+                            $('#qrprint').qrcode({
+                                text	: barcode+""
+                            });
+                        }
 
                         e.preventDefault();
                       });
@@ -168,6 +196,8 @@ app.localization.registerView('adidasTransferHome');
             createTransfers: function () {
 
                 var barcode = $("input[type='checkbox']:checked").val();
+
+
 
                 if (barcode) {
                     var block = app.getChain();
@@ -217,11 +247,14 @@ app.localization.registerView('adidasTransferHome');
                 if (result.status == 202) {
                     var data = JSON.parse(result.responseText);
                     app.showNotification("Sneaker Transfered successfully");
+
+                    
+
                 }
 
                 var type = "TRANSFER";
 
-                if(from == "E-Commerce"){
+                if(from == "Factory"){
                     type = "RMTRANSFER";
                 }
 
@@ -263,7 +296,20 @@ app.localization.registerView('adidasTransferHome');
 
         $("#source").on("change",function(e){
             transferModel.getSneaker(e);
+            if(e.target.value == "Factory"){
+                $("#factoryprocess").show();
+                $("#factorycol").addClass("col-md-3");
+                $("#transfercol").removeClass("col-md-offset-2")
+                $("#qrprint").empty();
+            }else{
+                $("#factorycol").removeClass("col-md-3");
+                $("#factoryprocess").hide();
+                $("#transfercol").addClass("col-md-offset-2");
+            }
+
         })
+
+        $("#factoryprocess").hide();
         
         
     });

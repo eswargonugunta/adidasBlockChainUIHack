@@ -1,18 +1,33 @@
 <div data-role="view" data-title="AdidasTransferHome" data-layout="main-nonav" data-model="app.adidasTransferHome"
     data-show="app.adidasTransferHome.onShow" data-after-show="app.adidasTransferHome.afterShow" id="adidasTransferScreen"
     class="screen">
+
+    <nav class="navbar navbar-primary navbar-transparent navbar-absolute">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+        
+                    <a class="navbar-brand" href="/">Adidas Transfer</a>
+                </div>
+            </div>
+        </nav>
     <div class="wrapper">
         <div class="dashboard-page" data-image="img/adidas_bg.jpg">
             <div class="main-panel" style="width:100%">
                 <div class="content">
                     <div class="container-fluid">
-                        <div class="col-md-8 col-md-offset-2">
+                        <div class="col-md-8 col-md-offset-2" id="transfercol">
                             <div class="card">
                                 <div class="card-header card-header-icon" data-background-color="green">
                                     <i class="material-icons">local_shipping</i>
                                 </div>
                                 <div class="card-content" style="padding:20px">
-                                    <h4 class="card-title">Transfer to Vendor</h4>
+                                    <h4 class="card-title">Transfer to Vendor/Manufacture</h4>
                                     <div class="row">
                                         <div class="col-md-12">
 
@@ -22,7 +37,7 @@
                                                         <label class="floating-label" for="source">Select Source</label>
                                                         <select id="source" class="form-control" style="width: 100%;">
                                                             <option value="adidas">Adidas</option>
-                                                            <option value="E-Commerce">E-Commerce</option>
+                                                            <option value="Factory">Adidas Factory</option>
                                                             <option value="Wholesale">Wholesale</option>
                                                         </select>
                                                     </div>
@@ -35,6 +50,7 @@
                                                     <div class="col-md-6">
                                                         <label class="floating-label" for="sender">Select Receiver</label>
                                                         <select id="sender" class="form-control" style="width: 100%;">
+                                                            <option value="Factory">Adidas Factory</option>
                                                             <option value="E-Commerce">E-Commerce</option>
                                                             <option value="Wholesale">Wholesale</option>
                                                         </select>
@@ -54,6 +70,29 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="" id="factorycol" >
+                            <div class="card" id="factoryprocess">
+                                <div class="card-header card-header-icon" data-background-color="green">
+                                    <i class="material-icons">domain</i>
+                                </div>
+                                <div class="card-content" style="padding:20px">
+                                    <h4 class="card-title">Factory Process</h4>
+                                    <p>
+                                        You can print the Digital Signature from Factory.
+                                    </p>
+                                    <div id="qrprint"></div>
+
+                                    <button class="btn btn-success btn-round pull-right"
+                                        type="button" style="margin-top: 5px">
+                                        <i class="material-icons">print</i>
+                                        Print QR
+                                    </button>
+
+                                </div>
+                            </div>
+
+                            
                         </div>
                     </div>
                 </div>

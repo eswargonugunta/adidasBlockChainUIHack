@@ -903,12 +903,13 @@ demo = {
     	} else if(type == 'block-html'){
 
             console.log(data);
-            var links ="<table>";
+            var links ="<table class='table' style='width:100%'>";
             if(data){
                 $.each(data,function(k,v){
                     console.log(v);
                     var id = v.adidasid;
-                    links += "<tr><a href='http://localhost:6001/#components/trace/view.html?id="+id+"'>"+id+"</a></tr>";
+                    links += "<tr><td><a href='http://192.168.43.226:6001/#components/trace/view.html?id="+id+"'>"+id+"</a></td></tr>";
+                    links += "<tr><td><img src='img/adidasVerify.png' style='width:50px' />  The Product is Adidas Authenticated</td></tr>";
 
                 })
             }

@@ -4,7 +4,7 @@
     var app = {
         data: {},
         user:{},
-        networkId:"0.0.0.0:3000/api/fabric/1_0",
+        networkId:"192.168.43.226:3000/api/fabric/1_0",
         channelname:"mychannel",
         chaincodeId:"fabcar",
 	data:"data",
@@ -73,7 +73,7 @@
 
     
     app.getBlockHeight = function(){
-		var result = app.getData("http://0.0.0.0:3000/api/fabric/1_0/channels/mychannel");
+		var result = app.getData("http://192.168.43.226:3000/api/fabric/1_0/channels/mychannel");
 		var data = JSON.parse(result.responseText);
 		return data.queryInfo.height.low;
 	}
@@ -90,7 +90,7 @@
 
 
     app.invokeApi = function (methodname, args) {
-        var url = "http://0.0.0.0:3000/api/fabric/1_0/channels/"+app.channelname+"/transactions";
+        var url = "http://192.168.43.226:3000/api/fabric/1_0/channels/"+app.channelname+"/transactions";
         var data = {
     		"proposal": {
 	            "chaincodeId": app.chaincodeId,
@@ -106,7 +106,7 @@
 
     app.getChain = function () {
         var blockheight = app.getBlockHeight()-1;
-        var result = app.getData("http://0.0.0.0:3000/api/fabric/1_0/channels/mychannel/blocks?blockId="+blockheight);
+        var result = app.getData("http://192.168.43.226:3000/api/fabric/1_0/channels/mychannel/blocks?blockId="+blockheight);
 		var data = JSON.parse(result.responseText);
         
 		var block = {
@@ -118,14 +118,14 @@
     }
     
     app.getTransaction = function (transactionid){
-    	var url ="http://0.0.0.0:3000/api/fabric/1_0/channels/"+app.channelname+"/transactions/"+transactionid+"?access_token=cd96d5260ad4757551ed4a5a991e62130f8008a0bf996e4e4b84cd097a747fec_sk";
+    	var url ="http://192.168.43.226:3000/api/fabric/1_0/channels/"+app.channelname+"/transactions/"+transactionid+"?access_token=cd96d5260ad4757551ed4a5a991e62130f8008a0bf996e4e4b84cd097a747fec_sk";
     	
     	return app.getData(url);
     	
     }
 
     app.getBlock = function (block) {
-        var url = "http://0.0.0.0:3000/api/fabric/1_0/channels/mychannel/blocks?blockId=" + block;
+        var url = "http://192.168.43.226:3000/api/fabric/1_0/channels/mychannel/blocks?blockId=" + block;
         var result = {};
         $.ajax({
             async: false,

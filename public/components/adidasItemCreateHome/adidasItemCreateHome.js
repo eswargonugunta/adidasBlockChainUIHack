@@ -65,6 +65,22 @@ app.localization.registerView('adidasItemCreateHome');
                     "model":"sport", 
                     "color":"Yellow",
                     "price":"$130"
+                },
+                {
+                    "cartItem": "ADIDAS X 17.3 FG FOOTBALL BOOTS WHITE",
+                    "barcode":"881117886499",
+                    "img": "img/cart/shoes7.jpg",
+                    "model":"sport", 
+                    "color":"White",
+                    "price":"$119"
+                },
+                {
+                    "cartItem": "Adidas ACE 17.3 AG Football Shoes Sneakers",
+                    "barcode":"000111111222",
+                    "img": "img/cart/shoes8.jpg",
+                    "model":"sport", 
+                    "color":"Gradient Black",
+                    "price":"$120"
                 }
             ],
             createSneaker: function (e) {
@@ -574,10 +590,17 @@ app.localization.registerView('adidasItemCreateHome');
             gradientcolor = "#8700ff";
             content = "Batch Created";
         }
-        else if (dataItem.type == "TRANSFER") {
+        else if (dataItem.type == "TRANSFER" && dataItem.value == "Factory") {
             name = dataItem.value;
             title = "";
-            image = "components/home/transfer.png";
+            image = "img/factory.png";
+            gradientcolor = "#00e68a";
+            content = "Transfered to Dealer";
+        }
+        else if (dataItem.type == "TRANSFER" && dataItem.value != "Factory") {
+            name = dataItem.value;
+            title = "";
+            image = "img/transfer.png";
             gradientcolor = "#00e68a";
             content = "Transfered to Dealer";
         }
@@ -596,7 +619,7 @@ app.localization.registerView('adidasItemCreateHome');
         } else if (dataItem.type == "RMTRANSFER") {
             name = dataItem.value;
             title = "";
-            image = "components/home/transfer.png";
+            image = "img/transfer.png";
             gradientcolor = "#00e68a";
             content = "Transfered to "+dataItem.value;
         } else if (dataItem.type == "PKGCREATION") {
