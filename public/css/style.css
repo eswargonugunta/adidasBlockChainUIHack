@@ -1,3 +1,136 @@
+
+.text-b {
+		transform: translateX(50%) translateY(50%);
+		list-style: none;
+		border-bottom: 0;
+}
+  
+.text-b.hidden-b {
+	border-bottom: 1px solid black;
+}
+  
+.text-b li {
+	display: inline-block;
+	float: left;
+	font-weight: 700;
+	font-size: 2em;
+	color: black;
+	opacity: 1;
+	transition: all 0.5s ease-in-out;
+	max-width: 2em;
+}
+  
+.text-b.hidden-b li.spaced {
+	padding-left: 0;
+}
+  
+.text-b li.spaced {
+	padding-left: 0.5em;
+}
+  
+.text-b.hidden-b li.ghost {
+	opacity: 0;
+	max-width: 0;
+}
+
+
+
+#grid1 .input-b {
+	display: none;
+}
+  
+  .button-b {
+	display: inline-block;
+	position: relative;
+	width: 50px;
+	height: 50px;
+	margin: 10px;
+	cursor: pointer;
+  }
+  
+  .button-b span {
+	display: block;
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	padding: 0;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	border-radius: 100%;
+	background: #eeeeee;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	transition: ease .3s;
+  }
+  
+  .button-b span:hover {
+	padding: 10px;
+  }
+  
+  .orange-b .button-b span {
+	background: #FF5722;
+  }
+  
+  .amber-b .button-b span {
+	background: #FFC107;
+  }
+  
+  .lime-b .button-b span {
+	background: #8BC34A;
+  }
+  
+  .teal-b .button-b span {
+	background: #009688;
+  }
+  
+  .blue-b .button-b span {
+	background: #2196F3;
+  }
+  
+  .indigo-b .button-b span {
+	background: #3F51B5;
+  }
+  
+  .layer {
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: transparent;
+	/*transition: ease .3s;*/
+	z-index: -1;
+  }
+  
+  .orange-b input:checked ~ .layer {
+	background: #F4511E;
+  }
+  
+  .amber-b input:checked ~ .layer {
+	background: #FFB300;
+  }
+  
+  .lime-b input:checked ~ .layer {
+	background: #7CB342;
+  }
+  
+  .teal-b input:checked ~ .layer {
+	background: #00897B;
+  }
+  
+  .blue-b input:checked ~ .layer {
+	visibility: hidden
+  }
+  
+  .indigo-b input:checked ~ .layer {
+	visibility: hidden
+  }
+  
+
 .saleBadge{
     height: 65px;
     position: absolute;

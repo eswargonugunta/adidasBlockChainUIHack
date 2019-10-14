@@ -788,6 +788,92 @@ demo = {
             md.startAnimationForBarChart(websiteViewsChart);
         }
     },
+    addToCart:function(barcode,isVerified){
+
+        var data = [{
+            "cartItem": "Nike presto Yellow Running Shoes",
+            "barcode":"884895094173",
+            "img": "img/cart/shoe1.jpeg",
+            "model":"sport",
+            "color":"Yellow",
+            "price":"$100"
+        },
+        {
+            "cartItem": "Blue Men Nike Shoes",
+            "barcode":"884895094137",
+            "img": "img/cart/shoes2.jpg",
+            "model":"sport", 
+            "color":"blue",
+            "price":"$120"
+        },
+        {
+            "cartItem": "Nike Men Black FLY.BY LOW Basketball Shoes",
+            "barcode":"98090839624",
+            "img": "img/cart/shoes3.jpg",
+            "model":"sport", 
+            "color":"black",
+            "price":"$200"
+        },
+        {
+            "cartItem": "Nike Free RN 5.0",
+            "barcode":"884895093787",
+            "img": "img/cart/shoes4.png",
+            "model":"sport", 
+            "color":"blue",
+            "price":"$150"
+        },
+        {
+            "cartItem": "Nike Zoom Pegasus 33 Mens Running Shoes",
+            "barcode":"883947822023",
+            "img": "img/cart/shoes5.jpg",
+            "model":"sport", 
+            "color":"red",
+            "price":"$50"
+        }
+    ];
+
+if(isVerified == "undefined" || isVerified == undefined){
+    isVerified = 0;
+}
+
+        $.each(data,function(k,v){
+            if(v.barcode == barcode){
+                var data = {
+                    item: v,
+                    isVerified:isVerified
+                }
+
+                var cart = localStorage.getItem("cart")
+                if(cart){
+                    cart = JSON.parse(cart);
+                } else{
+                    cart = [];
+                }
+
+                cart.push(data);
+                localStorage.setItem("cartitems",cart.length);
+                $("#notification").html(cart.length);
+                localStorage.setItem("cart",JSON.stringify(cart));
+            }
+        });
+    },
+    undocheckout: function(barcode,isVerified,x){
+        var cart = JSON.parse(localStorage.getItem("cart"));
+        var data = [];
+        $.each(cart,function(k,v){
+            if(v.item.barcode == barcode && v.isVerified == isVerified){
+                
+            }else{
+                data.push(v);
+            }
+        });
+
+        $(x).parent().parent().parent().parent().remove();
+
+        localStorage.setItem("cartitems",data.length);
+        $("#notification").html(data.length);
+        localStorage.setItem("cart",JSON.stringify(data));
+    },
     checkme: function(e){
         var list = document.getElementsByName('optionsCheckboxes')
         var sum=0;
@@ -908,8 +994,8 @@ demo = {
                 $.each(data,function(k,v){
                     console.log(v);
                     var id = v.adidasid;
-                    links += "<tr><td><a target='_blank' href='http://192.168.43.226:6001/#components/trace/view.html?id="+id+"'>"+id+"</a></td></tr>";
-                    links += "<tr><td><img src='img/adidasVerify.png' style='width:50px' />  The Product is Adidas Authenticated</td></tr>";
+                    links += "<tr><td><a target='_blank' href='http://localhost:6001/#components/trace/view.html?id="+id+"'>"+id+"</a></td></tr>";
+                    links += "<tr><td><img src='img/adidasVerify.png' style='width:50px' />  The Product is Nike Authenticated</td></tr>";
 
                 })
             }
@@ -953,31 +1039,37 @@ demo = {
             }
             else if(type == 'checkout'){
                 var html = '';
-                var json =[ { item :"item 1"},{ item :"item 2"}];
+                var json = JSON.parse(localStorage.getItem("cart"));
                 $.each(json,function(k,v){
-                   html += '<div class="form-group">' +
-                                    '<input id="input-field" type="text" class="form-control" />' +
-                                '</div>'+
-                                '<div class="row">'+
-                        '<div class="col-xs-2"><img class="img-responsive" src="img/cart/shoes1.jpg">'+
+                    var img = "",line="",isVerified=0;
+                    if(v.isVerified == 1){
+                        isVerified =1;
+                        img = '<img style="width:30px;position:absolute;top:0;z-index:2000" src="img/adidasVerify.png">';
+                        line = "The product is NIKE verified";
+                      } else{
+                        img = '<img style="width:30px;position:absolute;top:0;z-index:2000" src="img/NotVerified.png">';
+                      }
+                   html += '<div class="row">'+
+                        '<div class="col-xs-2"><img class="img-responsive" src="'+v.item.img+'">'+
+                        '<span >'+img +'</span>'+
                         '</div>'+
-                        '<div class="col-xs-4">'+
-                            '<h4 class="product-name"><strong>'+v.item+'</strong></h4><h4><small>Product description</small></h4>'+
+                        '<div class="col-xs-5">'+
+                            '<h4 class="product-name"><strong>'+v.item.cartItem+'</strong></h4><small style="font-size:10px">'+line+'</small>'+
                         '</div>'+
-                        '<div class="col-xs-6">'+
-                            '<div class="col-xs-6 text-right">'+
-                                '<h6><strong>25.00 <span class="text-muted">x</span></strong></h6>'+
+                        '<div class="col-xs-5">'+
+                            '<div class="col-xs-5 text-right">'+
+                                '<h6><strong>'+v.item.price+' <span class="text-muted">x</span></strong></h6>'+
                             '</div>'+
-                            '<div class="col-xs-4">'+
+                            '<div class="col-xs-3">'+
                                 '<input type="text" class="form-control input-sm" value="1">'+
                             '</div>'+
-                            '<div class="col-xs-2">'+
-                                '<button type="button" class="btn btn-link btn-xs">'+
-                                    '<i class="fa fa-trash-o" aria-hidden="true"></i>'+
+                            '<div class="col-xs-4">'+
+                                '<button type="button"  class="btn btn-link btn-xs">'+
+                                    '<i class="fa fa-trash-o" onclick="demo.undocheckout(\''+v.item.barcode+'\','+isVerified+',this);" aria-hidden="true"></i>'+
                                 '</button>'+
                             '</div>'+
                         '</div>'+
-                    '</div>';
+                    '</div><hr/>';
 
                 });
 
@@ -994,15 +1086,86 @@ demo = {
                         
                         buttonsStyling: false
                     }).then(function(result) {
-                        swal({
-                            type: 'success',
-                            html: 'Your Order is placed and Your tracking ID : <strong>' +
-                                    123456789 +
-                                  '</strong>',
-                            confirmButtonClass: 'btn btn-success',
-                            buttonsStyling: false
-    
-                        })
+                        var json = JSON.parse(localStorage.getItem("cart"));
+                        var data = [];
+
+                        $.each(json,function(k,v){
+                            if(v.isVerified == 1){
+                                data.push(v);
+                            }
+                        });
+
+                        $.each(data,function(k,v){
+                            var block = app.getChain();
+                            var height = block.height;
+                            var from = "E-Commerce";
+                            var receiver = "Customer";
+                            var sneakerList = [];
+                            var args = [];
+                            
+
+                            var result1 = app.queryApi("getSneaker", [v.item.barcode]);
+                            if (result1.status == 200) {
+                                var data1 = JSON.parse(result1.responseText);
+                                var message1 = data1;
+                                sneakerList.push(message1);
+                            }
+                            var zeroarg = {
+                                id: v.item.barcode,
+                                value: JSON.stringify(sneakerList),
+                                header: "Bought by "+receiver,
+                                from: from,
+                                to: receiver,
+                                date: new Date().toLocaleDateString()
+                            }
+                            args.push(JSON.stringify(zeroarg));
+               
+                            // args[1]
+                            args.push(from);
+                            // args[2]
+                            args.push(receiver);
+                            console.log(args);
+
+                            var result = app.invokeApi("createSneakerTransfer", args);
+                            if (result.status == 202) {
+                                var data = JSON.parse(result.responseText);
+                                
+                                swal({
+                                    type: 'success',
+                                    html: 'Your Order is placed and your transaction ID : <strong>' +
+                                    data.transactionID +
+                                          '</strong>',
+                                    confirmButtonClass: 'btn btn-success',
+                                    buttonsStyling: false
+            
+                                })
+                            }
+
+                            var type = "PKGCREATION";
+                            console.log(data);
+                            for (var i = 0; i < sneakerList.length ; i++) {
+                                var nikeid = sneakerList[i].adidasid;
+                                args = []
+                                args[0] = "";
+                                args[1] = "sneakerhdr-" + nikeid;
+                                var headerjson = {
+                                    block: height + "",
+                                    type: type,
+                                    value: receiver,
+                                    prevHash: block.currentBlockHash
+                                };
+
+                                console.log(args);
+            
+                                args.push(JSON.stringify(headerjson));
+                                result = app.invokeApi("updateHdr", args);
+                            }
+
+                        });
+
+                        
+
+                        
                     }).catch(swal.noop)
                 }
                 else if(type == 'trace'){

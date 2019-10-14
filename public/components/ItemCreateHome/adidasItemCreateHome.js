@@ -19,68 +19,44 @@ app.localization.registerView('adidasItemCreateHome');
             inventory:"",
             data : [
                 {
-                    "cartItem": "MEN'S ADIDAS RUNNING PUREBOOST RBL SHOES",
+                    "cartItem": "Nike presto Yellow Running Shoes",
                     "barcode":"884895094173",
-                    "img": "img/cart/shoes1.jpg",
+                    "img": "img/cart/shoe1.jpeg",
                     "model":"sport",
-                    "color":"Orange",
+                    "color":"Yellow",
                     "price":"$100"
                 },
                 {
-                    "cartItem": "ADIDAS GOLETTO VI FG FOOTBALL SHOES FOR MEN",
-                    "barcode":"884895094173",
+                    "cartItem": "Blue Men Nike Shoes",
+                    "barcode":"884895094137",
                     "img": "img/cart/shoes2.jpg",
                     "model":"sport", 
-                    "color":"black",
+                    "color":"blue",
                     "price":"$120"
                 },
                 {
-                    "cartItem": "ADIDAS NEMEZIZ MESSI 18.4 FXG FOOTBALL SHOES FOR MEN",
+                    "cartItem": "Nike Men Black FLY.BY LOW Basketball Shoes",
                     "barcode":"98090839624",
                     "img": "img/cart/shoes3.jpg",
                     "model":"sport", 
-                    "color":"green",
+                    "color":"black",
                     "price":"$200"
                 },
                 {
-                    "cartItem": "ADIDAS ACE 16.4 FXG J SOCCER FOR MEN",
+                    "cartItem": "Nike Free RN 5.0",
                     "barcode":"884895093787",
-                    "img": "img/cart/shoes4.jpg",
+                    "img": "img/cart/shoes4.png",
                     "model":"sport", 
-                    "color":"DarkGreen",
+                    "color":"blue",
                     "price":"$150"
                 },
                 {
-                    "cartItem": "ADIDAS X 16.1 FG FOOTBALL SHOES FOR MEN",
+                    "cartItem": "Nike Zoom Pegasus 33 Mens Running Shoes",
                     "barcode":"883947822023",
                     "img": "img/cart/shoes5.jpg",
                     "model":"sport", 
-                    "color":"While",
+                    "color":"red",
                     "price":"$50"
-                },
-                {
-                    "cartItem": "ADIDAS X TANGO 18.3 TF FOOTBALL SHOES FOR MEN",
-                    "barcode":"884417886477",
-                    "img": "img/cart/shoes6.jpg",
-                    "model":"sport", 
-                    "color":"Yellow",
-                    "price":"$130"
-                },
-                {
-                    "cartItem": "ADIDAS X 17.3 FG FOOTBALL BOOTS WHITE",
-                    "barcode":"881117886499",
-                    "img": "img/cart/shoes7.jpg",
-                    "model":"sport", 
-                    "color":"White",
-                    "price":"$119"
-                },
-                {
-                    "cartItem": "Adidas ACE 17.3 AG Football Shoes Sneakers",
-                    "barcode":"000111111222",
-                    "img": "img/cart/shoes8.jpg",
-                    "model":"sport", 
-                    "color":"Gradient Black",
-                    "price":"$120"
                 }
             ],
             createSneaker: function (e) {
@@ -94,6 +70,16 @@ app.localization.registerView('adidasItemCreateHome');
             },
             saveSneaker: function (prevblock) {
                 spendModel.set("currentBlock", prevblock);
+
+                
+                /*var result = app.queryApi("getSneaker", [spendModel.item]);
+
+                console.log(result.responseText)
+
+                if(result.responseText){
+                    alert("The design already available in Blockchain network");
+                    return;
+                }*/
 
                 var args = [];
                 var func = "createSneaker";
@@ -277,7 +263,7 @@ app.localization.registerView('adidasItemCreateHome');
                             rmtransferarr.push(rmtransferdata);
 
                         } else if (hdrinfo.type == "TRANSFER") {
-                            transferdata["block"] = hdrinfo.block;
+                            transferdata["block"] = parseInt(hdrinfo.block)+1;
                             transferdata["type"] = hdrinfo.type;
                             transferdata["value"] = hdrinfo.value;
                             transferdata["prevHash"] = hdrinfo.prevHash;
@@ -294,7 +280,7 @@ app.localization.registerView('adidasItemCreateHome');
                             createdata["color"] = cattleinfo[0].color;
                             createdata["parts"] = cattleinfo[0].parts;
                             createdata["material"] = cattleinfo[0].material;
-                            createdata["block"] = hdrinfo.block;
+                            createdata["block"] = parseInt(hdrinfo.block)+1;
                             createdata["type"] = hdrinfo.type;
                             createdata["value"] = hdrinfo.value;
                             createdata["prevHash"] = hdrinfo.prevHash;
@@ -575,11 +561,11 @@ app.localization.registerView('adidasItemCreateHome');
         console.log(JSON.stringify(dataItem));
 
         var name = "", title = "", image = "",gradientcolor="", via = false, content="",height=65,width=190;
-
+        console.log(dataItem);
         if (dataItem.type == "CREATE") {
             name = "Sneaker  - " + dataItem.adidasid;
-            title = dataItem.SneakerModel;
-            image = "img/adidas_logo1.png";
+            title = dataItem.sneakermodel;
+            image = "img/trace_logo.png";
             gradientcolor = "#2196f3";
             content = "Adidas";
             width =250;
@@ -603,32 +589,7 @@ app.localization.registerView('adidasItemCreateHome');
             image = "img/transfer.png";
             gradientcolor = "#00e68a";
             content = "Transfered to Dealer";
-        }
-        else if (dataItem.type == "RAWMEATCREATION") {
-            name = "Raw Meat";
-            title = dataItem.value;
-            image = "components/home/rawmeatcreate.png";
-            gradientcolor = "#f44336";
-            content = "Raw meats creation";
-        } else if (dataItem.type == "RAWMEATBATCH") {
-            name = "Raw Meat Batch";
-            title = dataItem.value;
-            image = "components/home/meat.gif";
-            gradientcolor = "#ffaa00";
-            content = "Raw meats Batch creation";
-        } else if (dataItem.type == "RMTRANSFER") {
-            name = dataItem.value;
-            title = "";
-            image = "img/transfer.png";
-            gradientcolor = "#00e68a";
-            content = "Transfered to "+dataItem.value;
-        } else if (dataItem.type == "PKGCREATION") {
-            name = "Package Creation";
-            title = dataItem.value;
-            image = "components/home/pkg.png";
-            gradientcolor = "#e600e6";
-            content = "Package Creation";
-        } else if (dataItem.type == "PKGTRANSFER") {
+        }else if (dataItem.type == "PKGTRANSFER") {
             name = "Package Transfer";
             title = dataItem.value;
             image = "components/home/retailer.png";
@@ -636,17 +597,13 @@ app.localization.registerView('adidasItemCreateHome');
             content = "Package Transfer";
         }
 
-        g.append(new dataviz.diagram.Rectangle({
-            width: width,
-            height: 65,
-            stroke: {
-                width: 0
-            },
-            tooltip: {
-                shared: true,
-                content: content,
-                autoHide: false,
-                position: "right"
+        var path ="";
+        path = new dataviz.diagram.Path({
+            data:"M 182 1 C 202 1 202 1 202 21 V 81 C 202 101 202 101 182 101 H 22 C 2 101 2 101 2 81 V 21 C 2 1 2 1 22 1 z",
+            width:300,
+            height:80,
+            stroke:{
+                color:"black"
             },
             fill: {
                 gradient: {
@@ -662,47 +619,57 @@ app.localization.registerView('adidasItemCreateHome');
                     }]
                 }
             }
-        }));
+        });
 
-        g.append(new dataviz.diagram.TextBlock({
-            text: name,
-            x: 55,
-            y: 10,
-            fill: "#fff"
-        }));
-
-        if (via) {
-            g.append(new dataviz.diagram.TextBlock({
-                text: "to",
-                x: 75,
-                y: 30,
-                fill: "#fff"
-            }));
-
-            g.append(new dataviz.diagram.TextBlock({
-                text: title,
-                x: 55,
-                y: 50,
-                fill: "#fff"
-            }));
-        } else {
-            g.append(new dataviz.diagram.TextBlock({
-                text: title,
-                x: 55,
-                y: 30,
-                fill: "#fff"
-            }));
-        }
-
-       
+        g.append(path);
 
         g.append(new dataviz.diagram.Image({
             source: image,
-            x: 3,
-            y: 3,
-            width: 50,
+            x: 5,
+            y: 15,
+            width: 65,
             height: 50
         }));
+        
+        g.append(new dataviz.diagram.TextBlock({
+            text: name,
+            x:85,
+            y: 25,
+            fill: "#fff"
+        }));
+        
+        if(dataItem.type == "CREATE"){
+
+            g.append(new dataviz.diagram.Circle({
+                radius: 9,
+                x:85,
+                y:50,
+                fill: "#FF5722"
+            }));
+
+            g.append(new dataviz.diagram.Circle({
+                radius: 9,
+                x:125,
+                y:50,
+                fill: "#FFC107"
+            }));
+
+
+            g.append(new dataviz.diagram.Circle({
+                radius: 9,
+                x:165,
+                y:50,
+                fill: "#8BC34A"
+            }));
+        
+            g.append(new dataviz.diagram.Circle({
+                radius: 9,
+                x:205,
+                y:50,
+                fill: "#3F51B5"
+            }));
+
+        }
 
         return g;
     }
@@ -731,7 +698,7 @@ app.localization.registerView('adidasItemCreateHome');
     function onSelect(e) {
 
         var dialog = $("#blockwindow").data("kendoWindow");
-        var html = "<table class='table' style='width:600px'>";
+        var html = "<table class='table' style='width:100%'>";
         var dataItem = e.item.dataItem;
 
         console.log(dataItem);
@@ -750,15 +717,13 @@ app.localization.registerView('adidasItemCreateHome');
             
             console.log(data.transactionEnvelope.payload);
             html += "<tr><td><strong>Transaction Id : </strong>" + txid + "</td></tr>";
-            html += "<tr><td>" + channelHtml + "</td></tr>";
-
-            
             if(data.transactionEnvelope.payload.data){
                 var nsWrites = data.transactionEnvelope.payload.data.actions[0].payload.action.proposal_response_payload.extension.results.ns_rwset;
                 var payloadTemplate = kendo.template($("#payloadTemplate").html());
-                var payloadHtml = payloadTemplate({data: nsWrites[0]});
+                var payloadHtml = payloadTemplate({data: { pay: nsWrites[0], key:dataItem.adidasid }});
                 html += "<tr><td><strong>Payload </strong>" + payloadHtml + "</td></tr>";
             }
+            html += "<tr><td>" + channelHtml + "</td></tr>";
 
             html += "</table>";
 
@@ -769,6 +734,16 @@ app.localization.registerView('adidasItemCreateHome');
                 customClass: 'swal-wide',
                 html:html
                 }).catch(swal.noop)
+
+
+            var text = $(".text-b");
+            text.click(function() {
+                if (text.hasClass("hidden-b")) {
+                    text.removeClass("hidden-b");
+                } else {
+                text.addClass("hidden-b");
+                }
+            });
 
         } catch (e) {
             console.log("Error getting block information" + e);
@@ -800,7 +775,12 @@ app.localization.registerView('adidasItemCreateHome');
                 startCap: "FilledCircle",
                 endCap: "ArrowEnd"
             },
-            click: onSelect
+            click: onSelect,
+            zoomStart: function(ev) {
+                if (!ev.meta.ctrlKey) {
+                  ev.preventDefault(true);
+                }
+              }
         });
 
         var diagram = $("#diagram").getKendoDiagram();

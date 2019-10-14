@@ -1,9 +1,9 @@
 ﻿[
   {
-    "username": "adidas",
-    "password": "adidas",
-    "displayname": "adidas",
-    "peer": "adidasItemCreate",
+    "username": "nike",
+    "password": "nike",
+    "displayname": "Nike",
+    "peer": "ItemCreate",
     "chaincodeid": "fabcar",
     "securecontext": "SonHrtURlySy"
   },
@@ -11,7 +11,7 @@
     "username": "admin",
     "password": "admin",
     "displayname": "adidasTransfer",
-    "peer": "adidasTransfer",
+    "peer": "Transfer",
     "chaincodeid": "fabcar",
     "securecontext": "user_type1_0"
   },
@@ -35,7 +35,7 @@
     "username": "cart",
     "password": "cart",
     "displayname" : "Cart",
-    "peer": "adidasCart",
+    "peer": "Cart",
     "chaincodeid": "fabcar",
     "securecontext" : "SonHrtURlySy"
   },

@@ -12,73 +12,49 @@ app.localization.registerView('adidasTransferHome');
             sneakerList:[],
             data : [
                 {
-                    "cartItem": "MEN'S ADIDAS RUNNING PUREBOOST RBL SHOES",
+                    "cartItem": "Nike presto Yellow Running Shoes",
                     "barcode":"884895094173",
-                    "img": "img/cart/shoes1.jpg",
+                    "img": "img/cart/shoe1.jpeg",
                     "model":"sport",
-                    "color":"Orange",
+                    "color":"Yellow",
                     "price":"$100"
                 },
                 {
-                    "cartItem": "ADIDAS GOLETTO VI FG FOOTBALL SHOES FOR MEN",
+                    "cartItem": "Blue Men Nike Shoes",
                     "barcode":"884895094137",
                     "img": "img/cart/shoes2.jpg",
                     "model":"sport", 
-                    "color":"black",
+                    "color":"blue",
                     "price":"$120"
                 },
                 {
-                    "cartItem": "ADIDAS NEMEZIZ MESSI 18.4 FXG FOOTBALL SHOES FOR MEN",
+                    "cartItem": "Nike Men Black FLY.BY LOW Basketball Shoes",
                     "barcode":"98090839624",
                     "img": "img/cart/shoes3.jpg",
                     "model":"sport", 
-                    "color":"green",
+                    "color":"black",
                     "price":"$200"
                 },
                 {
-                    "cartItem": "ADIDAS ACE 16.4 FXG J SOCCER FOR MEN",
+                    "cartItem": "Nike Free RN 5.0",
                     "barcode":"884895093787",
-                    "img": "img/cart/shoes4.jpg",
+                    "img": "img/cart/shoes4.png",
                     "model":"sport", 
-                    "color":"DarkGreen",
+                    "color":"blue",
                     "price":"$150"
                 },
                 {
-                    "cartItem": "ADIDAS X 16.1 FG FOOTBALL SHOES FOR MEN",
+                    "cartItem": "Nike Zoom Pegasus 33 Mens Running Shoes",
                     "barcode":"883947822023",
                     "img": "img/cart/shoes5.jpg",
                     "model":"sport", 
-                    "color":"While",
+                    "color":"red",
                     "price":"$50"
-                },
-                {
-                    "cartItem": "ADIDAS X TANGO 18.3 TF FOOTBALL SHOES FOR MEN",
-                    "barcode":"884417886477",
-                    "img": "img/cart/shoes6.jpg",
-                    "model":"sport", 
-                    "color":"Yellow",
-                    "price":"$130"
-                },
-                {
-                    "cartItem": "ADIDAS X 17.3 FG FOOTBALL BOOTS WHITE",
-                    "barcode":"881117886499",
-                    "img": "img/cart/shoes7.jpg",
-                    "model":"sport", 
-                    "color":"White",
-                    "price":"$119"
-                },
-                {
-                    "cartItem": "Adidas ACE 17.3 AG Football Shoes Sneakers",
-                    "barcode":"000111111222",
-                    "img": "img/cart/shoes8.jpg",
-                    "model":"sport", 
-                    "color":"Gradient Black",
-                    "price":"$120"
                 }
             ],
             getSneaker: function(e){
                  var source = e.target.value;
-                 if(source == "adidas"){
+                 if(source == "nike"){
                      transferModel.getAllSneaker();
                  } else  {
                      var result = app.queryApi("getSneaker", [source]);
@@ -124,7 +100,7 @@ app.localization.registerView('adidasTransferHome');
                          if($checkbox.prop("checked")){
                              var barcode = $("input[type='checkbox']:checked").val();
                              $('#qrprint').qrcode({
-                                 text	: "http://192.168.43.226:6001/#components/trace/view.html?id="+barcode
+                                 text	: "http://localhost:6001/#components/trace/view.html?id="+barcode
                              });
                          }
                          e.preventDefault();

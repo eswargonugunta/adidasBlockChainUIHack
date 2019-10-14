@@ -1,4 +1,4 @@
-<div data-role="view" data-title="AdidasItemCreateHome" data-layout="main-nonav" data-model="app.adidasItemCreateHome" data-show="app.adidasItemCreateHome.onShow"
+<div data-role="view" data-title="ItemCreateHome" data-layout="main-nonav" data-model="app.adidasItemCreateHome" data-show="app.adidasItemCreateHome.onShow"
     data-after-show="app.adidasItemCreateHome.afterShow" id="adidasItemCreateScreen" class="screen">
     <nav class="navbar navbar-primary navbar-transparent navbar-absolute">
         <div class="container">
@@ -11,7 +11,7 @@
                 </button>
     
                 <a class="navbar-brand" href="/">
-                    <img src="img/adidas_logo.png" height="80" alt="adidas logo">
+                    <img src="https://www.performgroup.com/wp-content/uploads/2015/10/nike-logo-white.png" height="80" alt=" logo">
                 </a>
             </div>
             <div class="collapse navbar-collapse">
@@ -48,7 +48,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Adidas</h4>
+                                        <h4 class="card-title">Nike</h4>
                                     </div>
                                     <div class="card-content">
                                         <div class="row">
@@ -125,7 +125,7 @@
                                                                                             <i class="material-icons">description</i>
                                                                                         </span>
                                                                                         <div class="form-group label-floating">
-                                                                                            <input name="item" data-bind="value: spendModel.item" type="text" placeholder="Enter Adidas Item Tag/Barcode" class="form-control">
+                                                                                            <input name="item" data-bind="value: spendModel.item" type="text" placeholder="Enter Item Tag/Barcode" class="form-control">
                                                                                         </div>
                                                                                     </div>
                             
@@ -200,7 +200,7 @@
                                                                         <i class="material-icons">description</i>
                                                                     </span>
                                                                     <div class="form-group label-floating">
-                                                                        <input name="item" data-bind="value: spendModel.item" type="text" placeholder="Enter Adidas Item Tag/Barcode" class="form-control">
+                                                                        <input name="item" data-bind="value: spendModel.item" type="text" placeholder="Enter Item Tag/Barcode" class="form-control">
                                                                     </div>
                                                                 </div>
 
@@ -321,9 +321,8 @@
 </script>
 <script type="text/x-kendo-template" id="payloadTemplate">
 
-
     <hr/>
-    <table id="grid1" class"table">
+    <table id="grid1" class"table" style="width:100%">
             <colgroup>
                 <col style="width:180px" />
                 <col style="width:400px" />
@@ -333,14 +332,21 @@
                     <td>Key</td>
                     <td>Value</td>
                 </tr>
-                # for (var i=0 ; i < data.rwset.writes.length; i++){ var data1 = data.rwset.writes[i]; #
-# console.log(data1); #
+                # for (var i=0 ; i < data.pay.rwset.writes.length; i++){ var data1 = data.pay.rwset.writes[i]; #
                  <tr>
                     <td>${data1.key}</td>
-                    <td>${data1.value}</td>
+                    <td>#var value= data1.value; value = value.replace("adidas","nike");  # 
+                    # if (data1.key == data.key){ value = JSON.parse(value); #
+                        <table class="table">
+                            <tr><td>Model - Type</td><td>Color</td><td>Material</td><td>Manufacter Date</td></tr>
+                            <tr><td>${value.sneakermodel} - ${value.sneakertype}</td><td>${value.color}</td><td>${value.material}</td><td>${value.manufacturedate}</td></tr>
+                        </table>
+                    #} else{#
+                        ${value}
+                    #}#
+                </td>
                 </tr>
                 #}#
-
             </tbody>
     <table>
 </script>
